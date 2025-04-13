@@ -1,236 +1,266 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HeavenImmortal - 一个码农</title><meta name="author" content="HeavenImmortal,1909312602@qq.com"><meta name="copyright" content="HeavenImmortal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="我苦苦的寻找，完美的代码究竟在哪里？">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HeavenImmortal">
+<meta property="og:url" content="https://heavenimtoral.gitee.io/index.html">
+<meta property="og:site_name" content="HeavenImmortal">
+<meta property="og:description" content="我苦苦的寻找，完美的代码究竟在哪里？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png">
+<meta property="article:author" content="HeavenImmortal">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://heavenimtoral.gitee.io/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: HeavenImmortal","link":"Link: ","source":"Source: HeavenImmortal","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: true
+};
 
-<meta name="generator" content="Hexo 5.2.0"></head>
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-我的第一篇博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2020-12-09T04:01:14.000Z" itemprop="datePublished">2020-12-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-    </h1>
-  
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ckigvycn70000bsvl2dqxbxs0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-07-27 10:37:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/09/hello-world/" class="article-date">
-  <time datetime="2020-12-09T03:53:35.674Z" itemprop="datePublished">2020-12-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/09/hello-world/">Hello World</a>
-    </h1>
-  
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/mine.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="HeavenImmortal" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HeavenImmortal</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">HeavenImmortal</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115543.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PgSql获取json格式字符串中某个属性的值"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值">PgSql获取json格式字符串中某个属性的值</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-07-27T02:28:39.864Z" title="Created 2022-07-27 10:28:39">2022-07-27</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-07-27T02:36:55.902Z" title="Updated 2022-07-27 10:36:55">2022-07-27</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Sql/">Sql</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Sql/">Sql</a></span></div><div class="content">最近遇到个问题，因为别人的代码存在bug，导致新建实体的某个字段属性没有保存，生产环境上出现了一大堆错误数据，后面别人把bug改了，但是让我来处理错误数据，幸运的是这个字段的值被保存下来了，不幸的是这个字段的值被保存在json字符串里，由于是生产环境，我不能通过代码处理，所以我需要通过sql来获取json字符串中的某个字段的值，百度了一下，找到了解决方案（也是第一次知道数据库可以直接获取 json字符串中某个字段的值）
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+json字符串数据结构
+123456789&#123;	&#x27;project&#x27;:&#123;		.......		&#x27;newValues&#x27;:&#123;			.......			&#x27;specId&#x27;:&#x27;xxxxxxxxx&#x27;		&#125;	&#125;&#125;
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+数据库处理
+1234567-- detailoperate::json pgsql的语法 将字符串转换成json  ， detailoperate::json-&gt;&gt;&#x27;project&#x27; 从json中获取ke ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115535.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis-批量处理"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理">MyBatis-批量处理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-03-25T03:17:21.963Z" title="Created 2022-03-25 11:17:21">2022-03-25</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-03-25T03:20:06.305Z" title="Updated 2022-03-25 11:20:06">2022-03-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/java/">java</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/mybatis/">mybatis</a></span></div><div class="content">一般在开发中，我们项目与数据库的交互是通过网络请求的，每次网络请求都会耗时，在与数据库交互次数较小的时候，耗时感觉不明显，但是如果是大数据巨量的数据交互，在分次执行，耗时就会变得特别大，这个时候我们就需要进行批量执行。批量执行指的是一数据库连接，执行多条sql语句。如果后面的功能依赖于前面查询出来的数据，这个时候批量执行不太适应，所以在进行大批量插入的时候，使用批量执行，就很有用。
+1234567891011121314151617181920212223242526//SqlSessionTemplate 这个是mybatis提供的 sqlSession模板@Resourceprivate SqlSessionTemplate sqlSessionTemplate;//获取sqlSession  ExecutorType.BATCH 表示执行的方式，BATCH是批量，此外还有REUSE、SIMPLESqlSession sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession(ExecutorType.BAT ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/10/22/jvm/" title="No title">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/10/22/jvm/" title="No title">No title</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-10-22T09:42:25.080Z" title="Created 2021-10-22 17:42:25">2021-10-22</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-10-22T09:43:52.648Z" title="Updated 2021-10-22 17:43:52">2021-10-22</time></span></div><div class="content">前言内存与垃圾回收字节码与类的加载性能监控与调优</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/09/30/typeScript/" title="TypeScript">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20211019161458.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TypeScript"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/09/30/typeScript/" title="TypeScript">TypeScript</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-09-30T06:28:35.678Z" title="Created 2021-09-30 14:28:35">2021-09-30</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-10-22T08:03:45.499Z" title="Updated 2021-10-22 16:03:45">2021-10-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/javaScript/">javaScript</a></span></div><div class="content">前言
+javaScript概述
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+JavaScript（缩写：JS）是一种运行在客户端（比如：浏览器）中的编程语言。
+当应用于浏览器时，为网站提供动态交互特性，让网页“动”起来。
+JavaScript 的运行环境：1 浏览器 2 Node.js。Node.js 让 JavaScript 摆脱了浏览器的束缚，可以实现服务端/桌面端编程等。其他： 微信小程序、微信小游戏 等等。总结：JavaScript 既能运行在 浏览器 中，也可以运行在 Node.js 中，前后端通吃，无所不能。
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/09/hello-world/" data-id="ckigvvzlv0000tgvlet2vhmhc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
-    </div>
-  </div>
+TypeScript概述
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/12/09/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-          </li>
-        
-          <li>
-            <a href="/2020/12/09/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+TypeScript是JavaScript的超集。
+它对JS进行了扩展，向JS中引入了类型的概念，并添加了许多新的特性。
+TS代码需要通过编译器编译为JS，然后再交由JS解析器执行。
+TS完全兼容JS，换言之，任何的JS代码都可以直接当成JS使用。
+相较于JS而言，TS拥有了静态类型，更加严格的语法，更强大的功能；TS可以在代码执行前就完成代码的检查，减小了运行时异常的出现的几率；TS代码可以编译为任意版本的JS代码，可有效解决不同JS运行环境的兼容问题；同样的功能，TS的代码 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/09/22/OpenLayers/" title="OpenLayers">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210922152509.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenLayers"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/09/22/OpenLayers/" title="OpenLayers">OpenLayers</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-09-22T06:27:41.751Z" title="Created 2021-09-22 14:27:41">2021-09-22</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-09-24T02:01:02.827Z" title="Updated 2021-09-24 10:01:02">2021-09-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/javaScript/">javaScript</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/WebGis/">WebGis</a></span></div><div class="content">前言参考博客
+介绍介绍OpenLayers是一个用于开发WebGIS客户端的JavaScript包，最初基于BSD许可发行。
+OpenLayers是一个开源的项目，其设计之意是为互联网客户端提供强大的地图展示功能，包括地图数据显示与相关操作，并具有灵活的扩展机制。
+目前OpenLayers已经成为一个拥有众多开发者和帮助社区的成熟、流行的框架。
+特征
+支持瓦片图层
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+OpenLayers支持从OSM、Bing、MapBox、Stamen和其他任何你能找到的XYZ瓦片资源中提取地图瓦片并在前端展示。同时也支持OGC的WMTS规范的瓦片服务以及ArcGIS规范的瓦片服务。
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+支持矢量切片（或者矢量瓦片）
 
+OpenLayers也支持矢量切片的访问和展示，包括MapBox矢量切片中的pbf格式，或者GeoJSON格式和TopoJSON格式的矢量切片。
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+支持矢量图层
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+能够渲染GeoJSON、TopoJSON、KML、GML和其他格式的矢量数据，上面说的矢量切片形式的数据也可以被认为是在矢量图层中渲染。
 
+支持OGC规范
+
+OpenLayers支持OGC制定的WMS、WFS等GIS网络服务规 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/09/16/geoServer/" title="geoServer">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210922152323.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="geoServer"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/09/16/geoServer/" title="geoServer">geoServer</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-09-16T08:12:04.068Z" title="Created 2021-09-16 16:12:04">2021-09-16</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-09-22T07:23:44.711Z" title="Updated 2021-09-22 15:23:44">2021-09-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95/">工具方法</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/WebGis/">WebGis</a></span></div><div class="content">geoServer前言介绍Geoserver是一个功能齐全，遵循OGC开放标准的开源WFS-T和WMS服务器。利用Geoserver可以把数据作为maps/images来发布(利用WMS来实现)也可以直接发布实际的数据(利用WFS来实现)，同时也提供了修改，删除和新增的功能(利用WFS-T)。
+GeoServer, 顾名思义,是一个Server. 它是开源的，允许用户查看和编辑地理数据。这是地理信息系统(GIS) 领域。GeoServer 是符合OGC 规范的一个全功能的WFS-T 和WMS server。
+GeoServer能够发布的数据类型：
+l 地图或影象——应用WMS，
+l 实时数据——应用WFS，
+l 用户更新、删除和编辑的数据——应用WFS-T。
+相关概念WMS: Web Map Service（Web地图服务）l利用具有地理空间位置信息的数据制作地图。其中将地图定义为地理数据可视的表现。这个规范定义了三个操作：
+
+GetCapabitities 返回服务级元数据，它是对服务信息内容和要求参数的一种描述；
+
+GetMap 返回一个地图影像，其地理空间参考和大小参数是明确定义 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/07/10/excel%E6%95%B0%E6%8D%AE%E8%BD%ACsql/" title="excel数据转换成Sql">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/background.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="excel数据转换成Sql"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/10/excel%E6%95%B0%E6%8D%AE%E8%BD%ACsql/" title="excel数据转换成Sql">excel数据转换成Sql</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-07-10T02:39:42.001Z" title="Created 2021-07-10 10:39:42">2021-07-10</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-09-22T07:20:31.880Z" title="Updated 2021-09-22 15:20:31">2021-09-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Sql/">Sql</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Sql/">Sql</a></span></div><div class="content">我们在测试的时候，需要一些假数据，这些数据是从正式库经过特定条件查询出来的数据，一般情况下，可以直接导出sql语句，这个时候自然是万事大吉:smile:!但是运气不好的时候，遇到特别复杂的语句，比如
+12select * from(select ROW_NUMBER() over(PARTITION by f.type order by f.op_time) rn,f.*                       from pub.t_gisview_quality_detail_fs f  where localnet_id = &#x27;104000&#x27;) where rn &lt;=3
+
+该条语句采用了子查询，由于数据库中没有子查询产生的表，所以无法导出sql语句，这个时候我们可以选择导出excel文件，在利用excel的函数，将这些数据转换成sql。
+
+将数据导出成excel文件
+
+编写函数
+
+上边部分为写函数的地方，右边部分为sql生成的地方，sql生成后直接将鼠标放在边框上，当鼠标变成十字架时，往下拉到数据的最后一行。
+1234567--excel的函数=CON ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/06/24/docker/" title="Docker">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/background.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Docker"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/06/24/docker/" title="Docker">Docker</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-06-24T02:47:23.863Z" title="Created 2021-06-24 10:47:23">2021-06-24</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-09-22T07:18:28.804Z" title="Updated 2021-09-22 15:18:28">2021-09-22</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Docker/">Docker</a></span></div><div class="content">前言Docker学习视频
+Docker官网
+Docker文档
+Docker仓库网站类似gitHub，我们可以把自己的镜像上传上去，也可以下载其他人的镜像。
+
+学前准备
 
 
+了解一些基础的Linux命令
 
-<script src="/js/script.js"></script>
+Docker概述Docker为什么出现一款产品，会存在多个环境，比如开发、测试、生产。多个环境会产生多个配置，导致问题。
+环境配置是十分的麻烦，一般的环境还好解决，但是如果遇到集群（Redis，Es，Hadoop…..）费时费力。其次，开发人员将项目打包，运维人员将包安装后运行，会发现，如果该项目依赖Es，Redis等环境，运维人员需要去自己在本地去配置环境。还有，不能够跨平台，将windows上的项目打包发布到Linux上，由于环境不同，会出现问题。
+所以思考，发布一个项目，可不可以带上环境安装打包！！！
+传统：开发jar，运维来做！
+现在：开发打包部署上线，一套流程做完！
+如果开发一款手机应用，需要经历一下流程：java—apk—发布（应用商店）—安装即可用
+现在使用Docker开发：java—jar（环境）—打包带上环境（镜像）—（docker仓库，商店）—下载发布的镜像—直接运 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/05/25/LinkedHashMap/" title="LinkedHashMap">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="LinkedHashMap"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/05/25/LinkedHashMap/" title="LinkedHashMap">LinkedHashMap</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-25T02:25:42.645Z" title="Created 2021-05-25 10:25:42">2021-05-25</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-06-24T02:15:02.875Z" title="Updated 2021-06-24 10:15:02">2021-06-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/java/">java</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/LinkedHashMap/">LinkedHashMap</a></span></div><div class="content">前言最近在做一个展示数据的表格，发现没有按照顺序展示，查询数据的时候，发现数据是按顺序被查询出来的，哪到底是哪里出了问题喃:cry:?找了半天，最后发现在进行数据处理的时候，其他人采用了HashMap来存放数据，HashMap不能保证数据的顺序，这就是原因！！！最后，我将其类型由HashMap改成了LinkedHashMap就行了，LinkedHashMap是HashMap的子类，HashMap具有的方法LinkedHashMap也具有，而且也可以保证数据存放顺序，这样我就只需要修改一下类型，后面的处理就可以不用修改了。
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/05/14/redis/" title="Redis学习">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis学习"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/05/14/redis/" title="Redis学习">Redis学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-14T06:26:27.348Z" title="Created 2021-05-14 14:26:27">2021-05-14</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-06-24T02:10:29.429Z" title="Updated 2021-06-24 10:10:29">2021-06-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/java/">java</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/redis/">redis</a></span></div><div class="content">前言Redis学习视频
+在做毕设的时候，关于权限框架，我本来打算采用shiro+Redis+JWT来实现的，可以原本放在阿里云上的redis服务连接不上了，但是在xshell访问到服务器上，却是可以使用的，而且我当初也成功地在本地访问到服务器上的redis了:sob:，我人傻了。现在只有在本地安装一手Redis了，顺带记录一手Redis的学习笔记。
+这是我第三次学习redis了，真的难受。第一次学习时，是因为疫情原因，在家学习，效率有点低下。第二次，是在实习时，在学习后，我才搭建了自己的个人博客，所以没有学习笔记。在实习的时候，一直没有接触redis，对redis的操作都遗忘了，而且也没有学习笔记:cry:!只有重新学习了。
+NoSql我们以前学习的MySQL是关系型数据库，Redis是NoSql(非关系型数据库)。
+为什么要用NoSql2021年是大数据的时代，以前的关系型数据库在面对如此庞大的数据量已经力不从心了。
+单机MySql时代在早些年代，一个数据库可以应付其数据需求。
+那个时候，更多的是去写静态网页Html，服务器不存在太大的压力。
 
+在这种情况下，它存在这一些问题：
+1、 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">HeavenImmortal</div><div class="author-info__description">我苦苦的寻找，完美的代码究竟在哪里？</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115543.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PgSql获取json格式字符串中某个属性的值"/></a><div class="content"><a class="title" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值">PgSql获取json格式字符串中某个属性的值</a><time datetime="2022-07-27T02:28:39.864Z" title="Created 2022-07-27 10:28:39">2022-07-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115535.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis-批量处理"/></a><div class="content"><a class="title" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理">MyBatis-批量处理</a><time datetime="2022-03-25T03:17:21.963Z" title="Created 2022-03-25 11:17:21">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/22/jvm/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2021/10/22/jvm/" title="No title">No title</a><time datetime="2021-10-22T09:42:25.080Z" title="Created 2021-10-22 17:42:25">2021-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/30/typeScript/" title="TypeScript"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20211019161458.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TypeScript"/></a><div class="content"><a class="title" href="/2021/09/30/typeScript/" title="TypeScript">TypeScript</a><time datetime="2021-09-30T06:28:35.678Z" title="Created 2021-09-30 14:28:35">2021-09-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/22/OpenLayers/" title="OpenLayers"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210922152509.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenLayers"/></a><div class="content"><a class="title" href="/2021/09/22/OpenLayers/" title="OpenLayers">OpenLayers</a><time datetime="2021-09-22T06:27:41.751Z" title="Created 2021-09-22 14:27:41">2021-09-22</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>Categories</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Dubbo/"><span class="card-category-list-name">Dubbo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/RabbitMQ/"><span class="card-category-list-name">RabbitMQ</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Sql/"><span class="card-category-list-name">Sql</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/java/"><span class="card-category-list-name">java</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/javaScript/"><span class="card-category-list-name">javaScript</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/sql/"><span class="card-category-list-name">sql</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="card-category-list-name">大数据</span><span class="card-category-list-count">1</span></a></li>
+            <li class="card-category-list-item more is-center"><a class="card-category-list-link-more" href="/categories/">
+                <span>More</span><i class="fas fa-angle-right"></i></a></li>
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/bug/" style="font-size: 1.23em; color: rgb(85, 129, 172)">bug</a><a href="/tags/java/" style="font-size: 1.5em; color: rgb(40, 143, 111)">java</a><a href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/" style="font-size: 1.1em; color: rgb(174, 121, 25)">代码生成</a><a href="/tags/mybatis/" style="font-size: 1.37em; color: rgb(17, 163, 47)">mybatis</a><a href="/tags/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" style="font-size: 1.23em; color: rgb(46, 116, 1)">Java8新特性</a><a href="/tags/LinkedHashMap/" style="font-size: 1.1em; color: rgb(69, 50, 169)">LinkedHashMap</a><a href="/tags/pageHelper/" style="font-size: 1.23em; color: rgb(184, 77, 172)">pageHelper</a><a href="/tags/Sql/" style="font-size: 1.23em; color: rgb(18, 49, 199)">Sql</a><a href="/tags/vue/" style="font-size: 1.1em; color: rgb(27, 169, 44)">vue</a><a href="/tags/ViewUI/" style="font-size: 1.1em; color: rgb(38, 195, 200)">ViewUI</a><a href="/tags/%E7%BB%84%E4%BB%B6/" style="font-size: 1.23em; color: rgb(136, 170, 187)">组件</a><a href="/tags/vue-jquery/" style="font-size: 1.1em; color: rgb(122, 92, 146)">vue jquery</a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.23em; color: rgb(14, 149, 39)">前端</a><a href="/tags/Vue/" style="font-size: 1.37em; color: rgb(95, 18, 41)">Vue</a><a href="/tags/echarts/" style="font-size: 1.1em; color: rgb(137, 20, 55)">echarts</a><a href="/tags/%E5%9B%BE%E8%A1%A8%E5%B1%95%E7%A4%BA/" style="font-size: 1.1em; color: rgb(37, 58, 77)">图表展示</a><a href="/tags/javaScript/" style="font-size: 1.37em; color: rgb(92, 196, 144)">javaScript</a><a href="/tags/WebGis/" style="font-size: 1.23em; color: rgb(41, 104, 152)">WebGis</a><a href="/tags/ViewUi/" style="font-size: 1.1em; color: rgb(87, 186, 87)">ViewUi</a><a href="/tags/json/" style="font-size: 1.1em; color: rgb(149, 107, 47)">json</a><a href="/tags/%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95/" style="font-size: 1.1em; color: rgb(37, 72, 53)">工具方法</a><a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 1.1em; color: rgb(127, 37, 155)">阿里</a><a href="/tags/Swagger/" style="font-size: 1.1em; color: rgb(189, 48, 117)">Swagger</a><a href="/tags/MySql/" style="font-size: 1.1em; color: rgb(185, 39, 131)">MySql</a><a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 1.1em; color: rgb(200, 178, 193)">跨域</a><a href="/tags/Docker/" style="font-size: 1.1em; color: rgb(162, 41, 41)">Docker</a><a href="/tags/ElasticSearch/" style="font-size: 1.1em; color: rgb(123, 44, 195)">ElasticSearch</a><a href="/tags/RabbitMQ/" style="font-size: 1.1em; color: rgb(59, 36, 77)">RabbitMQ</a><a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: rgb(145, 92, 59)">消息中间件</a><a href="/tags/springCloud/" style="font-size: 1.23em; color: rgb(20, 58, 156)">springCloud</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.23em; color: rgb(136, 61, 45)">分布式</a><a href="/tags/SpringSecurity/" style="font-size: 1.1em; color: rgb(96, 116, 1)">SpringSecurity</a><a href="/tags/%E6%9D%83%E9%99%90/" style="font-size: 1.1em; color: rgb(22, 166, 140)">权限</a><a href="/tags/JWT/" style="font-size: 1.1em; color: rgb(159, 143, 44)">JWT</a><a href="/tags/HTForWeb/" style="font-size: 1.1em; color: rgb(131, 192, 14)">HTForWeb</a><a href="/tags/Dubbo/" style="font-size: 1.1em; color: rgb(162, 50, 14)">Dubbo</a><a href="/tags/redis/" style="font-size: 1.1em; color: rgb(163, 81, 160)">redis</a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.1em; color: rgb(21, 145, 20)">设计模式</a><a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 1.1em; color: rgb(169, 161, 21)">大数据</a><a href="/tags/%E6%B5%81%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 1.1em; color: rgb(90, 50, 53)">流式数据处理</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/06/"><span class="card-archive-list-date">六月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/04/"><span class="card-archive-list-date">四月 2021</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives/">
+              <span>More</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">44</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-07-27T02:37:35.562Z"></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">237.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-07-27T02:37:35.702Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By HeavenImmortal</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">广修亿劫，证吾神通!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
 
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "广修亿劫&#44;证吾神通".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '广修亿劫&#44;证吾神通'
+  }
+}
 
-
-  </div>
-</body>
-</html>
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/css/mine.js"></script></div></body></html>

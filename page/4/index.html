@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HeavenImmortal - 一个码农</title><meta name="author" content="HeavenImmortal,1909312602@qq.com"><meta name="copyright" content="HeavenImmortal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="我苦苦的寻找，完美的代码究竟在哪里？">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HeavenImmortal">
+<meta property="og:url" content="https://heavenimtoral.gitee.io/page/4/index.html">
+<meta property="og:site_name" content="HeavenImmortal">
+<meta property="og:description" content="我苦苦的寻找，完美的代码究竟在哪里？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png">
+<meta property="article:author" content="HeavenImmortal">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://heavenimtoral.gitee.io/page/4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: HeavenImmortal","link":"Link: ","source":"Source: HeavenImmortal","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-07-27 10:37:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/mine.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="HeavenImmortal" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HeavenImmortal</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site-title">HeavenImmortal</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/04/%E6%B3%A8%E8%A7%A3@CrossOrigin/" title="注解'@CrossOrigin'跨域">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115543.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="注解'@CrossOrigin'跨域"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/04/%E6%B3%A8%E8%A7%A3@CrossOrigin/" title="注解'@CrossOrigin'跨域">注解'@CrossOrigin'跨域</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-02-04T08:13:41.601Z" title="Created 2021-02-04 16:13:41">2021-02-04</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-07-27T02:36:49.760Z" title="Updated 2022-07-27 10:36:49">2022-07-27</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E8%B7%A8%E5%9F%9F/">跨域</a></span></div><div class="content">注解@CrossOrigin参考文章：https://www.cnblogs.com/mmzs/p/9167743.html
+　　出于安全原因，浏览器禁止Ajax调用驻留在当前原点之外的资源。例如，当你在一个标签中检查你的银行账户时，你可以在另一个选项卡上拥有EVILL网站。来自EVILL的脚本不能够对你的银行API做出Ajax请求（从你的帐户中取出钱！）使用您的凭据。
+　　跨源资源共享（CORS）是由大多数浏览器实现的W3C规范，允许您灵活地指定什么样的跨域请求被授权，而不是使用一些不太安全和不太强大的策略，如IFRAME或JSONP。
+一、跨域(CORS)支持：　　Spring Framework 4.2 GA为CORS提供了第一类支持，使您比通常的基于过滤器的解决方案更容易和更强大地配置它。所以springMVC的版本要在4.2或以上版本才支持@CrossOrigin
+二、使用方法：1、controller配置CORS1.1、controller方法的CORS配置，您可以向@RequestMapping注解处理程序方法添加一个@CrossOrigin注解，以便启用CORS（默认情 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/02/04/pagehelper/" title="PageHelper">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/pagehelper.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PageHelper"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/04/pagehelper/" title="PageHelper">PageHelper</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-02-04T05:46:04.203Z" title="Created 2021-02-04 13:46:04">2021-02-04</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-02-04T06:36:51.021Z" title="Updated 2021-02-04 14:36:51">2021-02-04</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/pageHelper/">pageHelper</a></span></div><div class="content">前言在实际的项目开发中，常常需要使用到分页，分页方式分为两种：前端分页和后端分页。
+
+前端分页
+
+一次ajax请求数据的所有记录，然后在前端缓存并且计算count和分页逻辑，一般前端组件(例如dataTable)会提供分页动作。 特点是：简单，很适合小规模的web平台；当数据量大的时候会产生性能问题，在查询和网络传输的时间会很长。
+
+后端分页
+
+ 在ajax请求中指定页码pageNum和每页的大小pageSize，后端查询出当页的数据返回，前端只负责渲染。 特点是：复杂一些；性能瓶颈在MySQL的查询性能，这个当然可以调优解决。一般来说，开发使用的是这种方式。
+不使用分页插件的分页操作在没有使用分页插件的时候需要先写一个查询count的select语句，然后再写一个真正分页查询的语句，MySQL中有对分页的支持，是通过limit子句 limit关键字的用法是:LIMIT [offset,] rows offset是相对于首行的偏移量(首行是0)，rows是返回条数。 例如： 每页5条记录，取第一页，返回的是前5条记录 select * from tableA limit 0,5; 每页 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/02/04/swagger/" title="接口文档Swagger">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/Z235H_ELV8Q1F)(%7D144UFTN.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="接口文档Swagger"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/02/04/swagger/" title="接口文档Swagger">接口文档Swagger</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-02-04T01:53:09.235Z" title="Created 2021-02-04 09:53:09">2021-02-04</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-02-04T02:04:40.898Z" title="Updated 2021-02-04 10:04:40">2021-02-04</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/Swagger/">Swagger</a></span></div><div class="content">前言Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。总体目标是使客户端和文件系统作为服务器以同样的速度来更新。文件的方法，参数和模型紧密集成到服务器端的代码，允许API来始终保持同步。
+
+作用
+
+
+接口的文档在线自动生成。
+
+功能测试。
+
+
+
+主要项目
+
+Swagger是一组开源项目，其中主要要项目如下：
+
+ Swagger-tools:提供各种与Swagger进行集成和交互的工具。例如模式检验、Swagger 1.2文档转换成Swagger 2.0文档等功能。
+
+Swagger-core: 用于Java/Scala的的Swagger实现。与JAX-RS(Jersey、Resteasy、CXF…)、Servlets和Play框架进行集成。
+
+Swagger-js: 用于JavaScript的Swagger实现。
+
+Swagger-node-express: Swagger模块，用于node.js的Express web应用框架。
+
+Swagger-ui：一个无依赖的HTML、JS和CSS集合，可以为Swagger兼容API动态 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/15/Vue.js/" title="Vue.js">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/vue.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue.js"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/15/Vue.js/" title="Vue.js">Vue.js</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-01-15T04:01:14.000Z" title="Created 2021-01-15 12:01:14">2021-01-15</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-02-02T02:46:43.807Z" title="Updated 2021-02-02 10:46:43">2021-02-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/Vue/">Vue</a></span></div><div class="content">前言2019年最全最新Vue、Vuejs教程，从入门到精通
+vue官网
+
+学习路线
+
+
+Es6语法let/varlet：当变量需要改变的时候
+const：当变量不需要改变时
+事实上var的设计可以看出JavaScript语言设计上的错误，var没有块级作用域,只有函数具有作用域
+
+例子
+
+1.if
+123456789var func;    if(true)&#123;      var name = &quot;why&quot;;      func = function()&#123;        console.log(name);      &#125;    &#125;    name = &quot;kobe&quot;    func();
+
+正常情况下，我们想要打印出来的是why，但是由于var没有块作用域，导致在{}外可以对name进行修改。导致打印出来的是
+
+2.for
+先创建3个button标签
+123456var btns = document.getElementsByTagName(&quot;button&quot;);  for(var i = 0 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/01/12/SpringCloud-alibab%E7%89%88/" title="SpringCloud alibab版">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/springCloud.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringCloud alibab版"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/12/SpringCloud-alibab%E7%89%88/" title="SpringCloud alibab版">SpringCloud alibab版</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-01-12T07:46:44.206Z" title="Created 2021-01-12 15:46:44">2021-01-12</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-14T08:24:35.017Z" title="Updated 2021-01-14 16:24:35">2021-01-14</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/springCloud/">springCloud</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></span></div><div class="content">前言官方文档
+中文文档
+Spring Cloud Alibaba 也是一套微服务解决方案，包含开发分布式应用微服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。
+依托 Spring Cloud Alibaba，您只需要添加一些注解和少量配置，就可以将 Spring Cloud 应用接入阿里微服务解决方案，通过阿里中间件来迅速搭建分布式应用系统。
+作为 Spring Cloud 体系下的新实现，Spring Cloud Alibaba 跟官方的组件或其它的第三方实现如 Netflix, Consul，Zookeeper 等对比，具备了更多的功能:
+
+Spring Cloud Alibaba 包含组件这幅图是 Spring Cloud Alibaba 系列组件，其中包含了阿里开源组件，阿里云商业化组件，以及集成Spring Cloud 组件。
+
+
+阿里开源组件
+
+Nacos：一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
+Sentinel：把流量作为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2021/01/06/@Param-%E4%B8%8E-mybatis-insert%E6%A0%87%E7%AD%BE%E9%87%8C%E7%9A%84%E5%B1%9E%E6%80%A7keyProperty%E5%86%B2%E7%AA%81/" title="Param注解与mybatis&lt;insert&gt;标签里的属性keyProperty冲突">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115541.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Param注解与mybatis&lt;insert&gt;标签里的属性keyProperty冲突"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/01/06/@Param-%E4%B8%8E-mybatis-insert%E6%A0%87%E7%AD%BE%E9%87%8C%E7%9A%84%E5%B1%9E%E6%80%A7keyProperty%E5%86%B2%E7%AA%81/" title="Param注解与mybatis&lt;insert&gt;标签里的属性keyProperty冲突">Param注解与mybatis&lt;insert&gt;标签里的属性keyProperty冲突</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-01-06T01:51:02.317Z" title="Created 2021-01-06 09:51:02">2021-01-06</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-04-01T04:00:11.259Z" title="Updated 2021-04-01 12:00:11">2021-04-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/bug/">bug</a></span></div><div class="content">@Param与mybatis标签里的属性keyProperty会产生冲突
+
+错误
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586872021-01-06 09:47:02.555 ERROR 13204 --- [nio-8001-exec-2] o.a.c.c.C.[.[.[&#x2F;].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/12/31/idea2020.1%E4%B8%8E%E9%9D%9E%E8%87%AA%E5%B8%A6Maven%E9%85%8D%E7%BD%AE%E5%86%B2%E7%AA%81%E5%AF%BC%E8%87%B4%E7%9A%84%E5%8C%85%E4%B8%8D%E5%AD%98%E5%9C%A8%E9%94%99%E8%AF%AF/" title="idea2020.1与非自带Maven配置冲突导致的包不存在错误">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115542.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea2020.1与非自带Maven配置冲突导致的包不存在错误"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/12/31/idea2020.1%E4%B8%8E%E9%9D%9E%E8%87%AA%E5%B8%A6Maven%E9%85%8D%E7%BD%AE%E5%86%B2%E7%AA%81%E5%AF%BC%E8%87%B4%E7%9A%84%E5%8C%85%E4%B8%8D%E5%AD%98%E5%9C%A8%E9%94%99%E8%AF%AF/" title="idea2020.1与非自带Maven配置冲突导致的包不存在错误">idea2020.1与非自带Maven配置冲突导致的包不存在错误</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-31T08:56:15.275Z" title="Created 2020-12-31 16:56:15">2020-12-31</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-04-01T03:59:34.430Z" title="Updated 2021-04-01 11:59:34">2021-04-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/bug/">bug</a></span></div><div class="content">在最近的编写代码中，我遇见了一个问题，在运行maven项目时，发现疯狂的报包不存在这个错误
+
+但是在依赖里，这些包都是正常存在的
+于是我就搜索
+IDEA2020 1.1中Plugins加载不出来的问题及解决方法
+Error：java: 程序包lombok不存在- IDEA+maven+lombok
+发现时因为项目使用了本地自行安装配置的maven3.6.3，非IDEA自带的版本，并在setting.xml中配置了localRepository(指向LocalWarehouse)和mirrors(指向阿里云)。而IDEA-2020.1版本却无法识别自行设置的localRepository，导致安装在maven本地仓库的jar依赖项在编译时无法被扫描到，出现包不存在的错误。
+所以我决定采用上面博客中的方法，去掉localRepository，通过idea的设置来配置maven本地仓库。
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/12/25/springCloud%20H%E7%89%88/" title="SpringCloud H版">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/springCloud.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringCloud H版"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/12/25/springCloud%20H%E7%89%88/" title="SpringCloud H版">SpringCloud H版</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-25T08:27:23.998Z" title="Created 2020-12-25 16:27:23">2020-12-25</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-12T07:43:58.997Z" title="Updated 2021-01-12 15:43:58">2021-01-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/java/">java</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/springCloud/">springCloud</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a></span></div><div class="content">前言
+什么是微服务？
+
+一种软件开发技术- 面向服务的体系结构（SOA）架构样式的一种变体，将应用程序构造为一组松散耦合的服务。在微服务体系结构中，服务是细粒度的，协议是轻量级的。
+微服务（或微服务架构）是一种云原生架构方法，其中单个应用程序由许多松散耦合且可独立部署的较小组件或服务组成。这些服务通常
+● 有自己的堆栈，包括数据库和数据模型；
+● 通过REST API，事件流和消息代理的组合相互通信；
+● 和它们是按业务能力组织的，分隔服务的线通常称为有界上下文。尽管有关微服务的许多讨论都围绕体系结构定义和特征展开，但它们的价值可以通过相当简单的业务和组织收益更普遍地理解：
+● 可以更轻松地更新代码。
+● 团队可以为不同的组件使用不同的堆栈。
+● 组件可以彼此独立地进行缩放，从而减少了因必须缩放整个应用程序而产生的浪费和成本，因为单个功能可能面临过多的负载。
+
+什么是SpringCloud
+
+分布式微服务架构的一站式解决方案，是多种微服务架构落地技术的集合体，俗称微服务全家桶。
+
+相关技术
+
+
+SpringCloud技术栈
+
+
+
+服务注册与发现：Eureka(停更)、Zookeeper ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/12/25/RabbitMQ/" title="RabbitMQ">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/2VKP8ILZ3Y%5DWFC853PW_7OT.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RabbitMQ"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/12/25/RabbitMQ/" title="RabbitMQ">RabbitMQ</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-25T04:01:14.000Z" title="Created 2020-12-25 12:01:14">2020-12-25</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-12T00:52:49.794Z" title="Updated 2021-01-12 08:52:49">2021-01-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/RabbitMQ/">RabbitMQ</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/RabbitMQ/">RabbitMQ</a><span class="article-meta__link">•</span><a class="article-meta__tags" href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/">消息中间件</a></span></div><div class="content">前言MQ引言
+说明是MQ
+
+MQ(Message Quene) :  翻译为 消息队列,通过典型的 生产者和消费者模型,生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入,轻松的实现系统间解耦。别名为 消息中间件    通过利用高效可靠的消息传递机制进行平台无关的数据交流，并基于数据通信来进行分布式系统的集成。
+
+MQ有哪些
+
+当今市面上有很多主流的消息中间件，如老牌的ActiveMQ、RabbitMQ，炙手可热的Kafka，阿里巴巴自主开发RocketMQ等。
+
+不同MQ特点
+
+1234567891011121314151617# 1.ActiveMQ		ActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。它是一个完全支持JMS规范的的消息中间件。丰富的API,多种集群架构模式让ActiveMQ在业界成为老牌的消息中间件,在中小型企业颇受欢迎!# 2.Kafka		Kafka是LinkedIn开源的分布式发布-订阅消息系统，目前归属于Apache顶级项目。Kafka主要特点是 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/12/16/JavaScript/" title="JavaScript">     <img class="post_bg" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/javaScript.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/12/16/JavaScript/" title="JavaScript">JavaScript</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-16T02:56:58.607Z" title="Created 2020-12-16 10:56:58">2020-12-16</time><span class="article-meta__separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-12-25T08:23:00.447Z" title="Updated 2020-12-25 16:23:00">2020-12-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span><span class="article-meta tags"><span class="article-meta__separator">|</span><i class="fas fa-tag article-meta__icon"></i><a class="article-meta__tags" href="/tags/javaScript/">javaScript</a></span></div><div class="content">前言全新_JavaScript_基础+高级_JavaScript教程_javascript视频_js
+文档
+JavaScript 是世界上最流行的脚本语言。 JavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。 JavaScript 被设计为向 HTML 页面增加交互性。 许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。
+JS的组成ECMAScript(javascript语法)
+DOM(页面文档对象模型)
+BOM(浏览器对象模型)
+Jsjs书写位置外部式、内嵌式、行内式
+12345678910111213141516171819&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;    &lt;meta name=&quot;viewport&quot; content=&quot ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">HeavenImmortal</div><div class="author-info__description">我苦苦的寻找，完美的代码究竟在哪里？</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115543.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PgSql获取json格式字符串中某个属性的值"/></a><div class="content"><a class="title" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值">PgSql获取json格式字符串中某个属性的值</a><time datetime="2022-07-27T02:28:39.864Z" title="Created 2022-07-27 10:28:39">2022-07-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115535.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis-批量处理"/></a><div class="content"><a class="title" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理">MyBatis-批量处理</a><time datetime="2022-03-25T03:17:21.963Z" title="Created 2022-03-25 11:17:21">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/22/jvm/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2021/10/22/jvm/" title="No title">No title</a><time datetime="2021-10-22T09:42:25.080Z" title="Created 2021-10-22 17:42:25">2021-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/30/typeScript/" title="TypeScript"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20211019161458.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TypeScript"/></a><div class="content"><a class="title" href="/2021/09/30/typeScript/" title="TypeScript">TypeScript</a><time datetime="2021-09-30T06:28:35.678Z" title="Created 2021-09-30 14:28:35">2021-09-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/22/OpenLayers/" title="OpenLayers"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210922152509.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenLayers"/></a><div class="content"><a class="title" href="/2021/09/22/OpenLayers/" title="OpenLayers">OpenLayers</a><time datetime="2021-09-22T06:27:41.751Z" title="Created 2021-09-22 14:27:41">2021-09-22</time></div></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>Categories</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Dubbo/"><span class="card-category-list-name">Dubbo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/RabbitMQ/"><span class="card-category-list-name">RabbitMQ</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Sql/"><span class="card-category-list-name">Sql</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/java/"><span class="card-category-list-name">java</span><span class="card-category-list-count">24</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/javaScript/"><span class="card-category-list-name">javaScript</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/sql/"><span class="card-category-list-name">sql</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="card-category-list-name">大数据</span><span class="card-category-list-count">1</span></a></li>
+            <li class="card-category-list-item more is-center"><a class="card-category-list-link-more" href="/categories/">
+                <span>More</span><i class="fas fa-angle-right"></i></a></li>
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/bug/" style="font-size: 1.23em; color: rgb(85, 129, 172)">bug</a><a href="/tags/java/" style="font-size: 1.5em; color: rgb(40, 143, 111)">java</a><a href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/" style="font-size: 1.1em; color: rgb(174, 121, 25)">代码生成</a><a href="/tags/mybatis/" style="font-size: 1.37em; color: rgb(17, 163, 47)">mybatis</a><a href="/tags/Java8%E6%96%B0%E7%89%B9%E6%80%A7/" style="font-size: 1.23em; color: rgb(46, 116, 1)">Java8新特性</a><a href="/tags/LinkedHashMap/" style="font-size: 1.1em; color: rgb(69, 50, 169)">LinkedHashMap</a><a href="/tags/pageHelper/" style="font-size: 1.23em; color: rgb(184, 77, 172)">pageHelper</a><a href="/tags/Sql/" style="font-size: 1.23em; color: rgb(18, 49, 199)">Sql</a><a href="/tags/vue/" style="font-size: 1.1em; color: rgb(27, 169, 44)">vue</a><a href="/tags/ViewUI/" style="font-size: 1.1em; color: rgb(38, 195, 200)">ViewUI</a><a href="/tags/%E7%BB%84%E4%BB%B6/" style="font-size: 1.23em; color: rgb(136, 170, 187)">组件</a><a href="/tags/vue-jquery/" style="font-size: 1.1em; color: rgb(122, 92, 146)">vue jquery</a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.23em; color: rgb(14, 149, 39)">前端</a><a href="/tags/Vue/" style="font-size: 1.37em; color: rgb(95, 18, 41)">Vue</a><a href="/tags/echarts/" style="font-size: 1.1em; color: rgb(137, 20, 55)">echarts</a><a href="/tags/%E5%9B%BE%E8%A1%A8%E5%B1%95%E7%A4%BA/" style="font-size: 1.1em; color: rgb(37, 58, 77)">图表展示</a><a href="/tags/javaScript/" style="font-size: 1.37em; color: rgb(92, 196, 144)">javaScript</a><a href="/tags/WebGis/" style="font-size: 1.23em; color: rgb(41, 104, 152)">WebGis</a><a href="/tags/ViewUi/" style="font-size: 1.1em; color: rgb(87, 186, 87)">ViewUi</a><a href="/tags/json/" style="font-size: 1.1em; color: rgb(149, 107, 47)">json</a><a href="/tags/%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95/" style="font-size: 1.1em; color: rgb(37, 72, 53)">工具方法</a><a href="/tags/%E9%98%BF%E9%87%8C/" style="font-size: 1.1em; color: rgb(127, 37, 155)">阿里</a><a href="/tags/Swagger/" style="font-size: 1.1em; color: rgb(189, 48, 117)">Swagger</a><a href="/tags/MySql/" style="font-size: 1.1em; color: rgb(185, 39, 131)">MySql</a><a href="/tags/%E8%B7%A8%E5%9F%9F/" style="font-size: 1.1em; color: rgb(200, 178, 193)">跨域</a><a href="/tags/Docker/" style="font-size: 1.1em; color: rgb(162, 41, 41)">Docker</a><a href="/tags/ElasticSearch/" style="font-size: 1.1em; color: rgb(123, 44, 195)">ElasticSearch</a><a href="/tags/RabbitMQ/" style="font-size: 1.1em; color: rgb(59, 36, 77)">RabbitMQ</a><a href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" style="font-size: 1.1em; color: rgb(145, 92, 59)">消息中间件</a><a href="/tags/springCloud/" style="font-size: 1.23em; color: rgb(20, 58, 156)">springCloud</a><a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 1.23em; color: rgb(136, 61, 45)">分布式</a><a href="/tags/SpringSecurity/" style="font-size: 1.1em; color: rgb(96, 116, 1)">SpringSecurity</a><a href="/tags/%E6%9D%83%E9%99%90/" style="font-size: 1.1em; color: rgb(22, 166, 140)">权限</a><a href="/tags/JWT/" style="font-size: 1.1em; color: rgb(159, 143, 44)">JWT</a><a href="/tags/HTForWeb/" style="font-size: 1.1em; color: rgb(131, 192, 14)">HTForWeb</a><a href="/tags/Dubbo/" style="font-size: 1.1em; color: rgb(162, 50, 14)">Dubbo</a><a href="/tags/redis/" style="font-size: 1.1em; color: rgb(163, 81, 160)">redis</a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.1em; color: rgb(21, 145, 20)">设计模式</a><a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 1.1em; color: rgb(169, 161, 21)">大数据</a><a href="/tags/%E6%B5%81%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" style="font-size: 1.1em; color: rgb(90, 50, 53)">流式数据处理</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">七月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/10/"><span class="card-archive-list-date">十月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/09/"><span class="card-archive-list-date">九月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/06/"><span class="card-archive-list-date">六月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/04/"><span class="card-archive-list-date">四月 2021</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/archives/">
+              <span>More</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">44</div></div><div class="webinfo-item"><div class="item-name">Run time :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-07-27T02:37:35.562Z"></div></div><div class="webinfo-item"><div class="item-name">Total Count :</div><div class="item-count">237.9k</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-07-27T02:37:35.702Z"></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By HeavenImmortal</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">广修亿劫，证吾神通!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "广修亿劫&#44;证吾神通".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '广修亿劫&#44;证吾神通'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') subtitleType()
+  else $.getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js', subtitleType)
+} else {
+  subtitleType()
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/css/mine.js"></script></div></body></html>

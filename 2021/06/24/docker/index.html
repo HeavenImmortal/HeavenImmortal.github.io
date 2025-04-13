@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docker | HeavenImmortal</title><meta name="keywords" content="后端 容器 Docker java"><meta name="author" content="HeavenImmortal,1909312602@qq.com"><meta name="copyright" content="HeavenImmortal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="本人学习Docker的记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker">
+<meta property="og:url" content="https://heavenimtoral.gitee.io/2021/06/24/docker/index.html">
+<meta property="og:site_name" content="HeavenImmortal">
+<meta property="og:description" content="本人学习Docker的记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/background.jpg">
+<meta property="article:published_time" content="2021-06-24T02:47:23.863Z">
+<meta property="article:modified_time" content="2021-09-22T07:18:28.804Z">
+<meta property="article:author" content="HeavenImmortal">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/background.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://heavenimtoral.gitee.io/2021/06/24/docker/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: HeavenImmortal","link":"Link: ","source":"Source: HeavenImmortal","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-22 15:18:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/mine.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="HeavenImmortal" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/background.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HeavenImmortal</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Docker</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-06-24T02:47:23.863Z" title="Created 2021-06-24 10:47:23">2021-06-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-09-22T07:18:28.804Z" title="Updated 2021-09-22 15:18:28">2021-09-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java/">java</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>11min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1og4y1q7M4">Docker学习视频</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.docker.com/">Docker官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/">Docker文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://hub.docker.com/signup">Docker仓库网站</a>类似gitHub，我们可以把自己的镜像上传上去，也可以下载其他人的镜像。</p>
+<blockquote>
+<p>学前准备</p>
+</blockquote>
+<ul>
+<li>了解一些基础的Linux命令</li>
+</ul>
+<h2 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h2><h3 id="Docker为什么出现"><a href="#Docker为什么出现" class="headerlink" title="Docker为什么出现"></a>Docker为什么出现</h3><p>一款产品，会存在多个环境，比如开发、测试、生产。多个环境会产生多个配置，导致问题。</p>
+<p>环境配置是十分的麻烦，一般的环境还好解决，但是如果遇到集群（Redis，Es，Hadoop…..）费时费力。其次，开发人员将项目打包，运维人员将包安装后运行，会发现，如果该项目依赖Es，Redis等环境，运维人员需要去自己在本地去配置环境。还有，不能够跨平台，将windows上的项目打包发布到Linux上，由于环境不同，会出现问题。</p>
+<p>所以思考，发布一个项目，可不可以带上环境安装打包！！！</p>
+<p>传统：开发jar，运维来做！</p>
+<p>现在：开发打包部署上线，一套流程做完！</p>
+<p>如果开发一款手机应用，需要经历一下流程：java—apk—发布（应用商店）—安装即可用</p>
+<p>现在使用Docker开发：java—jar（环境）—打包带上环境（镜像）—（docker仓库，商店）—下载发布的镜像—直接运行即可！</p>
+<p>Docker给以上的问题提出了解决方案。</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624143308.png" alt="image-20210624143259531"></p>
+<blockquote>
+<p>Docker的核心思想：隔离</p>
+<p>以多个应用程序为例，Docker将每个程序隔离，像集装箱装载货物一样，一个程序占据一个集装箱（环境），不会干扰到其他程序。</p>
+<p>通过隔离机制，可以将服务器利用到极致</p>
+</blockquote>
+<h3 id="Docker能干什么"><a href="#Docker能干什么" class="headerlink" title="Docker能干什么"></a>Docker能干什么</h3><blockquote>
+<p>之前的虚拟机技术</p>
+</blockquote>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624150256.png" alt="image-20210624150255079"></p>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>资源占用多</li>
+<li>冗余步骤多</li>
+<li>启动很慢</li>
+</ul>
+<blockquote>
+<p>容器化技术</p>
+</blockquote>
+<p><strong>容器化技术不是模拟一个完整的系统！！！</strong></p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624150538.png" alt="image-20210624150537464"></p>
+<p>每个程序各自隔离，</p>
+<p><strong>Docker与虚拟机的不同：</strong></p>
+<ul>
+<li>传统虚拟机：虚拟出一条硬件，运行一个完整的操作系统，然后在这个系统上安装和运行软件</li>
+<li>容器内的应用直接运行在宿主的内核，容器是没有自己的内核。</li>
+<li>每个容器间是相互隔离，每个容器内都有一个属于自己的文件系统，互不影响。</li>
+</ul>
+<blockquote>
+<p>DevOps(开发，运维)</p>
+</blockquote>
+<p><strong>应用更快速的交付和部署</strong></p>
+<p>传统：一大堆帮助文档，安装程序。</p>
+<p>Docker：打包镜像发布测试，一键运行</p>
+<p><strong>更便捷的升级和扩容</strong></p>
+<p>使用Docker后，我们部署的应用就和搭积木一样！</p>
+<p>扩展时只需要在新服务器上运行打包出来的镜像。</p>
+<p><strong>更简单的系统运维</strong></p>
+<p>在容器化之后，我们开发、运维、测试的环境高度一致</p>
+<p><strong>更高效的计算机资源利用</strong>：Docker是内核级别的虚拟化，可以在一个物理机上运行很多个容器实例！服务器的性能可以被压榨到极致。</p>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><h3 id="Docker的基本组成"><a href="#Docker的基本组成" class="headerlink" title="Docker的基本组成"></a>Docker的基本组成</h3><p><strong>Docker的架构图</strong></p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624153009.png" alt="image-20210624153007126"></p>
+<ul>
+<li><p><strong>镜像（images）</strong></p>
+<p>docker镜像好比一个模板，可以通过这个模板来创建容器服务，例如tomcat镜像===&gt;run===&gt;tomcat容器（提供服务器），通过这个镜像可以创建多个容器（最终服务运行或项目运行在容器中）</p>
+</li>
+<li><p><strong>容器（container）</strong></p>
+<p>Docker利用容器技术，独立运行一个或一个组应用，通过镜像创建的</p>
+<p>启动，停止，删除等基本命令。</p>
+<p>目前就可以把这个容器理解为一个简易的Linux系统</p>
+</li>
+<li><p><strong>仓库（registry）</strong></p>
+<p>仓库就是存放镜像的地方！仓库分为私有仓库和公有仓库！Docker Hub是国外的仓库，但是阿里、百度这些也有，需要我们配置镜像加速（类似maven，maven仓库默认是国外的，我们在导入依赖的时候下载速度特别慢，但是我们可以配置阿里镜像源，这样下载速度就很快）</p>
+</li>
+</ul>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><blockquote>
+<p>环境准备</p>
+</blockquote>
+<ul>
+<li>会Linux基础</li>
+<li>Linux服务器，CentOS 7</li>
+<li>XShell 7(有学生免费使用版)</li>
+</ul>
+<blockquote>
+<p>环境查看</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#系统内核是3.10以上</span></span><br><span class="line">[root@izbp10gaiewd2vyuegenj7z /]<span class="comment"># uname -r</span></span><br><span class="line">3.10.0-1160.6.1.el7.x86_64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#系统版本</span></span><br><span class="line">[root@izbp10gaiewd2vyuegenj7z /]<span class="comment"># cat /etc/os-release</span></span><br><span class="line">NAME=<span class="string">&quot;CentOS Linux&quot;</span></span><br><span class="line">VERSION=<span class="string">&quot;7 (Core)&quot;</span></span><br><span class="line">ID=<span class="string">&quot;centos&quot;</span></span><br><span class="line">ID_LIKE=<span class="string">&quot;rhel fedora&quot;</span></span><br><span class="line">VERSION_ID=<span class="string">&quot;7&quot;</span></span><br><span class="line">PRETTY_NAME=<span class="string">&quot;CentOS Linux 7 (Core)&quot;</span></span><br><span class="line">ANSI_COLOR=<span class="string">&quot;0;31&quot;</span></span><br><span class="line">CPE_NAME=<span class="string">&quot;cpe:/o:centos:centos:7&quot;</span></span><br><span class="line">HOME_URL=<span class="string">&quot;https://www.centos.org/&quot;</span></span><br><span class="line">BUG_REPORT_URL=<span class="string">&quot;https://bugs.centos.org/&quot;</span></span><br><span class="line"></span><br><span class="line">CENTOS_MANTISBT_PROJECT=<span class="string">&quot;CentOS-7&quot;</span></span><br><span class="line">CENTOS_MANTISBT_PROJECT_VERSION=<span class="string">&quot;7&quot;</span></span><br><span class="line">REDHAT_SUPPORT_PRODUCT=<span class="string">&quot;centos&quot;</span></span><br><span class="line">REDHAT_SUPPORT_PRODUCT_VERSION=<span class="string">&quot;7&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装</p>
+</blockquote>
+<ul>
+<li>进入文档</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624155009.png" alt="image-20210624155008082"></p>
+<ul>
+<li>选择服务器</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624155113.png" alt="image-20210624155111321"></p>
+<ul>
+<li>选择操作系统</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624155309.png" alt="image-20210624155307688"></p>
+<ul>
+<li>卸载原有的Docker</li>
+</ul>
+<p>卸载命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">1.卸载Docker</span></span><br><span class="line">yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br><span class="line">                  </span><br><span class="line"><span class="meta">#</span><span class="bash">2.需要的安装包</span>                 </span><br><span class="line">yum install -y yum-utils</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">3.设置镜像仓库</span></span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo #国外的地址 速度特别慢</span><br><span class="line">yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo  #Docker的阿里云镜像地址 </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">4.更新yum软件包索引</span></span><br><span class="line">yum makecache fast</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">5.安装docker相关的 docker-ce 社区版 ee企业版</span></span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">6.启动docker</span></span><br><span class="line">systemctl start docker</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">7.检查docker</span></span><br><span class="line">docker version</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">8.运行hello-world</span></span><br><span class="line">docker run hello-word</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">9.查看下载下来的hello-world镜像</span></span><br><span class="line">docker images</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">卸载docker</span></span><br><span class="line">yum remove docker-ce docker-ce-cli containerd.io</span><br><span class="line">rm -rf /var/lib/docker #docker默认工作路径</span><br><span class="line">rm -rf /var/lib/containerd</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>docker version 结果</p>
+<p><img src="../../../../typora/images/image-20210624170200382.png" alt="image-20210624170200382"></p>
+<p>docker run hello-word 结果</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624170502.png" alt="image-20210624170500830"></p>
+<p>docker images 结果</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210624170620.png" alt="image-20210624170618701"></p>
+<h3 id="阿里云镜像加速"><a href="#阿里云镜像加速" class="headerlink" title="阿里云镜像加速"></a>阿里云镜像加速</h3><ul>
+<li>登录阿里云，找到镜像服务加速</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210625101551.png" alt="image-20210625101542761"></p>
+<ul>
+<li>找到镜像加速器，执行命令</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210625101915.png" alt="image-20210625101912354"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p &#x2F;etc&#x2F;docker</span><br><span class="line">sudo tee &#x2F;etc&#x2F;docker&#x2F;daemon.json &lt;&lt;-&#39;EOF&#39;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https:&#x2F;&#x2F;om9tizwe.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-run-hello-world执行流程"><a href="#docker-run-hello-world执行流程" class="headerlink" title="docker run hello-world执行流程"></a>docker run hello-world执行流程</h3><p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210625102343.png" alt="image-20210625102341883"></p>
+<h3 id="底层原理"><a href="#底层原理" class="headerlink" title="底层原理"></a>底层原理</h3><p><strong>Docker是怎么工作的？</strong></p>
+<p>Docker是一个client-server机构的系统，Docker的守护进程运行在主机上，通过Socket从客户端访问！</p>
+<p>DockerService接收到Docker-Client的指令，就会执行这个命令！</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210625104353.png" alt="image-20210625104352093"></p>
+<p><strong>Docker为什么比VM快？</strong></p>
+<ul>
+<li>Docker有着比虚拟机更少的抽象层</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210625104742.png" alt="image-20210625104741315"></p>
+<ul>
+<li><p>Docker利用的是宿主机的内核，VM需要的是Guest OS</p>
+<p>所以说，新建一个容器的时候，docker不需要像虚拟机重新加载一个操作系统内核，避免引导，虚拟机是加载Guest OS，分钟级别的，而Docker是利用宿主机的操作系统，省略了这个复杂的过程， 秒级！</p>
+</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210625105438.png" alt="image-20210625105437335"></p>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><h3 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker version #显示Docker版本信息</span><br><span class="line">docker info  #显示docker的系统级别信息 包括容器镜像的数量</span><br><span class="line">docker 命令 --help #万能命令</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>帮助文档地址</p>
+</blockquote>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210630141322.png" alt="image-20210630141313880"></p>
+<h3 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h3><ul>
+<li><strong>docker images</strong> 显示镜像</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker images</span><br><span class="line">REPOSITORY    TAG       IMAGE ID       CREATED        SIZE</span><br><span class="line">hello-world   latest    d1165f221234   3 months ago   13.3kB</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">解释</span></span><br><span class="line">REPOSITORY 镜像的仓库源</span><br><span class="line">TAG        镜像的标签</span><br><span class="line">IMAGE ID   镜像的id</span><br><span class="line">CREATED    镜像的创建时间</span><br><span class="line">SIZE       镜像的大小</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">可选项</span></span><br><span class="line">Options:</span><br><span class="line">  -a, --all             #列出所有镜像</span><br><span class="line">      --digests         Show digests</span><br><span class="line">  -f, --filter filter   Filter output based on conditions provided</span><br><span class="line">      --format string   Pretty-print images using a Go template</span><br><span class="line">      --no-trunc        Don&#x27;t truncate output</span><br><span class="line">  -q, --quiet           #只显示id</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker search</strong> 搜索镜像</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker search mysql</span><br><span class="line">NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED</span><br><span class="line">mysql                             MySQL is a widely used, open-source relation…   11068     [OK]       </span><br><span class="line">mariadb                           MariaDB Server is a high performing open sou…   4193      [OK]       </span><br><span class="line">mysql/mysql-server                Optimized MySQL Server Docker images. Create…   822                  [OK]</span><br><span class="line">percona                           Percona Server is a fork of the MySQL relati…   545       [OK]       </span><br><span class="line">phpmyadmin                        phpMyAdmin - A web interface for MySQL and M…   259       [OK]       </span><br><span class="line">centos/mysql-57-centos7           MySQL 5.7 SQL database server                   88                   </span><br><span class="line">mysql/mysql-cluster               Experimental MySQL Cluster Docker images. Cr…   88                   </span><br><span class="line">centurylink/mysql                 Image containing mysql. Optimized to be link…   59                   [OK]</span><br><span class="line">bitnami/mysql                     Bitnami MySQL Docker Image                      52                   [OK]</span><br><span class="line">databack/mysql-backup             Back up mysql databases to... anywhere!         44                   </span><br><span class="line">deitch/mysql-backup               REPLACED! Please use http://hub.docker.com/r…   41                   [OK]</span><br><span class="line">prom/mysqld-exporter                                                              39                   [OK]</span><br><span class="line">tutum/mysql                       Base docker image to run a MySQL database se…   35                   </span><br><span class="line">linuxserver/mysql                 A Mysql container, brought to you by LinuxSe…   30                   </span><br><span class="line">schickling/mysql-backup-s3        Backup MySQL to S3 (supports periodic backup…   29                   [OK]</span><br><span class="line">mysql/mysql-router                MySQL Router provides transparent routing be…   21                   </span><br><span class="line">centos/mysql-56-centos7           MySQL 5.6 SQL database server                   20                   </span><br><span class="line">circleci/mysql                    MySQL is a widely used, open-source relation…   20                   </span><br><span class="line">arey/mysql-client                 Run a MySQL client from a docker container      17                   [OK]</span><br><span class="line">fradelg/mysql-cron-backup         MySQL/MariaDB database backup using cron tas…   14                   [OK]</span><br><span class="line">openshift/mysql-55-centos7        DEPRECATED: A Centos7 based MySQL v5.5 image…   6                    </span><br><span class="line">devilbox/mysql                    Retagged MySQL, MariaDB and PerconaDB offici…   3                    </span><br><span class="line">ansibleplaybookbundle/mysql-apb   An APB which deploys RHSCL MySQL                2                    [OK]</span><br><span class="line">jelastic/mysql                    An image of the MySQL database server mainta…   1                    </span><br><span class="line">widdpim/mysql-client              Dockerized MySQL Client (5.7) including Curl…   1                    [OK</span><br><span class="line"><span class="meta">#</span><span class="bash">可选项</span></span><br><span class="line">  --filter=Stars=3000 #搜索收藏数大于3000的镜像</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker pull</strong>  下载镜像</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">下载镜像 docker pull 镜像名[:tag]</span> </span><br><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker pull mysql</span><br><span class="line">Using default tag: latest #如果不写tag 默认最新版本</span><br><span class="line">latest: Pulling from library/mysql</span><br><span class="line">b4d181a07f80: Pull complete  #分层下载：docker image的核心 联合文件系统</span><br><span class="line">a462b60610f5: Pull complete </span><br><span class="line">578fafb77ab8: Pull complete </span><br><span class="line">524046006037: Pull complete </span><br><span class="line">d0cbe54c8855: Pull complete </span><br><span class="line">aa18e05cc46d: Pull complete </span><br><span class="line">32ca814c833f: Pull complete </span><br><span class="line">9ecc8abdb7f5: Pull complete </span><br><span class="line">ad042b682e0f: Pull complete </span><br><span class="line">71d327c6bb78: Pull complete </span><br><span class="line">165d1d10a3fa: Pull complete </span><br><span class="line">2f40c47d0626: Pull complete </span><br><span class="line">Digest: sha256:52b8406e4c32b8cf0557f1b74517e14c5393aff5cf0384eff62d9e81f4985d4b #签名</span><br><span class="line">Status: Downloaded newer image for mysql:latest</span><br><span class="line">docker.io/library/mysql:latest #真实地址</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">以下两个命令等价</span></span><br><span class="line">docker pull mysql</span><br><span class="line">docker.io/library/mysql:latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker rmi</strong> 删除镜像</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker pull imageId</span><br></pre></td></tr></table></figure>
+
+<h3 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h3><blockquote>
+<p><strong>我们有了镜像才能创建容器</strong>，为了测试，我下载了一个centOS镜像，虽然在Linux centOS下在下一个centOS有点套娃</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker pull centos</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker run</strong> 启动镜像</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">docker run [可选参数] image</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">参数列表</span></span><br><span class="line">--name=&quot;name&quot; 容器名字，用来区分容器</span><br><span class="line">-d           后台方式运行</span><br><span class="line">-it          使用交互方式运行，进入容器查看内容</span><br><span class="line">-p           指定容器的端口</span><br><span class="line">	-p ip:主机端口:容器端口</span><br><span class="line">	-p 主机端口:容器端口(常用)</span><br><span class="line">	-p 容器端口</span><br><span class="line">	容器端口</span><br><span class="line">-P           随机指定端口</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">测试</span></span><br><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker run -it centos /bin/bash #启动并进入容器</span><br><span class="line">[root@672f5830aa22 /]#  #你会发现此时的root id已经变了，表示我们已经进入了centos容器</span><br><span class="line">[root@672f5830aa22 /]# ls</span><br><span class="line">bin  etc   lib	  lost+found  mnt  proc  run   srv  tmp  var</span><br><span class="line">dev  home  lib64  media       opt  root  sbin  sys  usr</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">退出容器</span></span><br><span class="line">[root@672f5830aa22 /]# exit</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker ps</strong> 查看正在运行的容器</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker ps</span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</span><br><span class="line">[root@izbp10gaiewd2vyuegenj7z ~]# docker ps -a  #查看曾经运行过的容器</span><br><span class="line">CONTAINER ID   IMAGE         COMMAND       CREATED         STATUS                          PORTS     NAMES</span><br><span class="line">672f5830aa22   centos        &quot;/bin/bash&quot;   8 minutes ago   Exited (0) About a minute ago             interesting_hugle</span><br><span class="line">764eec518885   hello-world   &quot;/hello&quot;      5 days ago      Exited (0) 5 days ago                     sharp_borg</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">参数</span></span><br><span class="line">-a #列出当前正在运行的容器，包括历史运行过的容器</span><br><span class="line">-n=? #显示最近创建的？个容器</span><br><span class="line">-q #只显示容器的编号</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>退出容器</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit #退出并停止运行</span><br><span class="line">ctrl+p+q #容器不停止退出</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>docker rm</strong> 删除容器</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker rm 容器id #删除指定容器</span><br><span class="line">docker rm -f $&#123;docker ps -aq&#125; #删除所有容器</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用其他命令"><a href="#常用其他命令" class="headerlink" title="常用其他命令"></a>常用其他命令</h3><p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210630163727.png" alt="image-20210630163726030"></p>
+<h4 id="后台启动容器"><a href="#后台启动容器" class="headerlink" title="后台启动容器"></a><strong>后台启动容器</strong></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">通过docker run -d启动容器</span></span><br><span class="line">docker run -d centos</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">问题：docker ps 发现容器停止了</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">常见的坑，docker 容器使用后台运行，就必须要有一个前台进程，docker发现没有应用，就会自动停止。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f -t --tail 20 容器</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看容器中进程信息"><a href="#查看容器中进程信息" class="headerlink" title="查看容器中进程信息"></a>查看容器中进程信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker top 容器id</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看镜像的元数据"><a href="#查看镜像的元数据" class="headerlink" title="查看镜像的元数据"></a>查看镜像的元数据</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 容器id</span><br></pre></td></tr></table></figure>
+
+<h4 id="进入当前正在运行的容器"><a href="#进入当前正在运行的容器" class="headerlink" title="进入当前正在运行的容器"></a>进入当前正在运行的容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">通常我们的容器都是使用后台方式运行，需要进入容器</span></span><br><span class="line"></span><br><span class="line">docker exec -it 容器id </span><br><span class="line"></span><br><span class="line">docker attach 容器id</span><br><span class="line"></span><br><span class="line">exec 进入容器后，相当于开启一个新的终端</span><br><span class="line">attach 进入当前的终端</span><br></pre></td></tr></table></figure>
+
+<h4 id="从容器内拷贝文件到主机上"><a href="#从容器内拷贝文件到主机上" class="headerlink" title="从容器内拷贝文件到主机上"></a>从容器内拷贝文件到主机上</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp 容器di:路径 主机路径</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker search nginx #搜索镜像</span><br><span class="line"></span><br><span class="line">docker pull nginx #下载镜像</span><br><span class="line"></span><br><span class="line">docker images #查看镜像</span><br><span class="line"></span><br><span class="line">docker run -d --name nginx -p 3344:80 nginx #启动nginx容器 -d 后台运行 --name nginx 给容器起名nginx -p 3344：80 设置映射端口主机端口为3344 nginx容器内使用的端口80（nginx的默认端口）</span><br><span class="line"></span><br><span class="line">docker ps #查看正在运行的容器</span><br><span class="line"></span><br><span class="line">yum update -y &amp;&amp; yum install curl -y #安装curl</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:1909312602@qq.com">HeavenImmortal</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://heavenimtoral.gitee.io/2021/06/24/docker/">https://heavenimtoral.gitee.io/2021/06/24/docker/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Docker/">Docker</a></div><div class="post_share"><div class="social-share" data-image="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/background.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/10/excel%E6%95%B0%E6%8D%AE%E8%BD%ACsql/"><img class="prev-cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/background.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">excel数据转换成Sql</div></div></a></div><div class="next-post pull-right"><a href="/2021/05/25/LinkedHashMap/"><img class="next-cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">LinkedHashMap</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">HeavenImmortal</div><div class="author-info__description">我苦苦的寻找，完美的代码究竟在哪里？</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">Docker概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E4%B8%BA%E4%BB%80%E4%B9%88%E5%87%BA%E7%8E%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">Docker为什么出现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.2.</span> <span class="toc-text">Docker能干什么</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker"><span class="toc-number">2.</span> <span class="toc-text">Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">Docker安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">2.1.1.</span> <span class="toc-text">Docker的基本组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Docker"><span class="toc-number">2.1.2.</span> <span class="toc-text">安装Docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F"><span class="toc-number">2.1.3.</span> <span class="toc-text">阿里云镜像加速</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-run-hello-world%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.4.</span> <span class="toc-text">docker run hello-world执行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">2.1.5.</span> <span class="toc-text">底层原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.</span> <span class="toc-text">基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.1.</span> <span class="toc-text">帮助命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.2.</span> <span class="toc-text">镜像命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.3.</span> <span class="toc-text">容器命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.4.</span> <span class="toc-text">常用其他命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="toc-number">2.2.4.1.</span> <span class="toc-text">后台启动容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97"><span class="toc-number">2.2.4.2.</span> <span class="toc-text">查看日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E4%B8%AD%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.4.3.</span> <span class="toc-text">查看容器中进程信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%95%9C%E5%83%8F%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.4.4.</span> <span class="toc-text">查看镜像的元数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">2.2.4.5.</span> <span class="toc-text">进入当前正在运行的容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%AE%B9%E5%99%A8%E5%86%85%E6%8B%B7%E8%B4%9D%E6%96%87%E4%BB%B6%E5%88%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A"><span class="toc-number">2.2.4.6.</span> <span class="toc-text">从容器内拷贝文件到主机上</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85nginx"><span class="toc-number">2.2.5.</span> <span class="toc-text">安装nginx</span></a></li></ol></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115543.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PgSql获取json格式字符串中某个属性的值"/></a><div class="content"><a class="title" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值">PgSql获取json格式字符串中某个属性的值</a><time datetime="2022-07-27T02:28:39.864Z" title="Created 2022-07-27 10:28:39">2022-07-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115535.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis-批量处理"/></a><div class="content"><a class="title" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理">MyBatis-批量处理</a><time datetime="2022-03-25T03:17:21.963Z" title="Created 2022-03-25 11:17:21">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/22/jvm/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2021/10/22/jvm/" title="No title">No title</a><time datetime="2021-10-22T09:42:25.080Z" title="Created 2021-10-22 17:42:25">2021-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/30/typeScript/" title="TypeScript"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20211019161458.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TypeScript"/></a><div class="content"><a class="title" href="/2021/09/30/typeScript/" title="TypeScript">TypeScript</a><time datetime="2021-09-30T06:28:35.678Z" title="Created 2021-09-30 14:28:35">2021-09-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/22/OpenLayers/" title="OpenLayers"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210922152509.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenLayers"/></a><div class="content"><a class="title" href="/2021/09/22/OpenLayers/" title="OpenLayers">OpenLayers</a><time datetime="2021-09-22T06:27:41.751Z" title="Created 2021-09-22 14:27:41">2021-09-22</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By HeavenImmortal</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">广修亿劫，证吾神通!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/css/mine.js"></script></div></body></html>

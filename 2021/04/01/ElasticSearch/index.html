@@ -1,0 +1,735 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ElasticSearch7.6.x | HeavenImmortal</title><meta name="keywords" content="java,ElasticSearch"><meta name="author" content="HeavenImmortal,1909312602@qq.com"><meta name="copyright" content="HeavenImmortal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="概述搜索技术简介 ElasticSearch  Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能。它用于全文搜索、结构化搜索、分析以及将这三者混合使用：维基百科使用Elasticsearch提供全文搜索并高亮关键字，以及输入实时搜索(search-asyou-type)和搜索纠错(did-you-mean)等搜索建议功能。英国卫报使用Elastic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch7.6.x">
+<meta property="og:url" content="https://heavenimtoral.gitee.io/2021/04/01/ElasticSearch/index.html">
+<meta property="og:site_name" content="HeavenImmortal">
+<meta property="og:description" content="概述搜索技术简介 ElasticSearch  Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能。它用于全文搜索、结构化搜索、分析以及将这三者混合使用：维基百科使用Elasticsearch提供全文搜索并高亮关键字，以及输入实时搜索(search-asyou-type)和搜索纠错(did-you-mean)等搜索建议功能。英国卫报使用Elastic">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png">
+<meta property="article:published_time" content="2021-04-01T07:21:54.300Z">
+<meta property="article:modified_time" content="2021-04-02T09:01:20.510Z">
+<meta property="article:author" content="HeavenImmortal">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="ElasticSearch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://heavenimtoral.gitee.io/2021/04/01/ElasticSearch/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: HeavenImmortal","link":"Link: ","source":"Source: HeavenImmortal","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: true
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-02 17:01:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/mine.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="HeavenImmortal" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">HeavenImmortal</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw fa fa-users"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">ElasticSearch7.6.x</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-04-01T07:21:54.300Z" title="Created 2021-04-01 15:21:54">2021-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-04-02T09:01:20.510Z" title="Updated 2021-04-02 17:01:20">2021-04-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java/">java</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">6.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>25min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="搜索技术简介"><a href="#搜索技术简介" class="headerlink" title="搜索技术简介"></a>搜索技术简介</h2><blockquote>
+<p>ElasticSearch</p>
+</blockquote>
+<p>Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能。<br>它用于<strong>全文搜索</strong>、<strong>结构化搜索</strong>、<strong>分析</strong>以及将这三者混合使用：<br>维基百科使用Elasticsearch提供全文搜索并高亮关键字，以及输入实时搜索(search-asyou-type)和搜索纠错(did-you-mean)等搜索建议功能。<br>英国卫报使用Elasticsearch结合用户日志和社交网络数据提供给他们的编辑以实时的反馈，以便及时了解公众对新发表的文章的回应。<br>StackOverflow结合全文搜索与地理位置查询，以及more-like-this功能来找到相关的问题和答案。<br>Github使用Elasticsearch检索1300亿行的代码。<br>但是Elasticsearch不仅用于大型企业，它还让像DataDog以及Klout这样的创业公司将最初的想法变成可扩展的解决方案。Elasticsearch可以在你的笔记本上运行，也可以在数以百计的服务器上处理PB级别的数据 。</p>
+<p>Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎。无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库。<br>但是，Lucene只是一个库。想要使用它，你必须使用Java来作为开发语言并将其直接集成到你的应用中，更糟糕的是，Lucene非常复杂，你需要深入了解检索的相关知识来理解它是如何工作的。<br>Elasticsearch也使用Java开发并使用Lucene作为其核心来实现所有索引和搜索的功能，但是它的目的是通过简单的 RESTful API 来隐藏Lucene的复杂性，从而让全文搜索变得简单。</p>
+<blockquote>
+<p>solr简介</p>
+</blockquote>
+<p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化</p>
+<p>Solr可以独立运行，运行在Jetty、Tomcat等这些Servlet容器中，Solr 索引的实现方法很简单，用 POST 方法向 Solr 服务器发送一个描述 Field 及其内容的 XML 文档，Solr根据xml文档添加、删除、更新索引 。Solr 搜索只需要发送 HTTP GET 请求，然后对 Solr 返回Xml、json等格式的查询结果进行解析，组织页面布局。Solr不提供构建UI的功能，Solr提供了一个管理界面，通过管理界面可以查询Solr的配置和运行情况。</p>
+<p>solr是基于lucene开发企业级搜索服务器，实际上就是封装了lucene。</p>
+<p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的文件，生成索引；也可以通过提出查找请求，并得到返回结果。</p>
+<blockquote>
+<p>Lucene简介</p>
+</blockquote>
+<p>Lucene是apache软件基金会4 jakarta项目组的一个子项目，是一个开放源代码的全文检索引擎工具包，但它不是一个完整的全文检索引擎，而是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎，部分文本分析引擎（英文与德文两种西方语言）。Lucene的目的是为软件开发人员提供一个简单易用的工具包，以方便的在目标系统中实现全文检索的功能，或者是以此为基础建立起完整的全文检索引擎。Lucene是一套用于全文检索和搜寻的开源程式库，由Apache软件基金会支持和提供。Lucene提供了一个简单却强大的应用程式接口，能够做全文索引和搜寻。在Java开发环境里Lucene是一个成熟的免费开源工具。就其本身而言，Lucene是当前以及最近几年最受欢迎的免费Java信息检索程序库。人们经常提到信息检索程序库，虽然与搜索引擎有关，但不应该将信息检索程序库与搜索引擎相混淆。</p>
+<p>Lucene是一个全文检索引擎的架构。那什么是全文搜索引擎？</p>
+<p>全文搜索引擎是名副其实的搜索引擎，国外具代表性的有Google、Fast/AllTheWeb、AltaVista、Inktomi、Teoma、WiseNut等，国内著名的有百度（Baidu）。它们都是通过从互联网上提取的各个网站的信息（以网页文字为主）而建立的数据库中，检索与用户查询条件匹配的相关记录，然后按一定的排列顺序将结果返回给用户，因此他们是真正的搜索引擎。</p>
+<p>从搜索结果来源的角度，全文搜索引擎又可细分为两种，一种是拥有自己的检索程序（Indexer），俗称“蜘蛛”（Spider）程序或“机器人”（Robot）程序，并自建网页数据库，搜索结果直接从自身的数据库中调用，如上面提到的7家引擎；另一种则是租用其他引擎的数据库，并按自定的格式排列搜索结果，如Lycos引擎。</p>
+<h2 id="ElasticSearch与Solr区别"><a href="#ElasticSearch与Solr区别" class="headerlink" title="ElasticSearch与Solr区别"></a>ElasticSearch与Solr区别</h2><blockquote>
+<p>对已有数据搜索</p>
+</blockquote>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401153826.png" alt="image-20210401153825103"></p>
+<blockquote>
+<p>当实时建立索引时</p>
+</blockquote>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401153843.png" alt="image-20210401153841250"></p>
+<blockquote>
+<p>数据量增加</p>
+</blockquote>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401153856.png" alt="image-20210401153854558"></p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401153909.png" alt="image-20210401153907424"></p>
+<blockquote>
+<p>ElasticSearch vs Solr 总结</p>
+</blockquote>
+<p>　　（1）es基本是开箱即用，非常简单。Solr安装略微复杂一丢丢，可关注（<a target="_blank" rel="noopener" href="http://www.cnblogs.com/blueskyli/p/7100443.html#3763227">solr6.6教程-基础环境搭建(一)</a>）</p>
+<p>　　（2）Solr 利用 Zookeeper 进行分布式管理，而 Elasticsearch 自身带有分布式协调管理功能。</p>
+<p>　　（3）Solr 支持更多格式的数据，比如JSON、XML、CSV，而 Elasticsearch 仅支持json文件格式。</p>
+<p>　　（4）Solr 官方提供的功能更多，而 Elasticsearch 本身更注重于核心功能，高级功能多有第三方插件提供，例如图形化界面需要kibana友好支撑</p>
+<p>　　（5）Solr 查询快，但更新索引时慢（即插入删除慢），用于电商等查询多的应用；</p>
+<p>　　　　 ES建立索引快（即查询慢），<strong>即实时性查询快</strong>，用于facebook新浪等搜索。</p>
+<p>　　   Solr 是传统搜索应用的有力解决方案，但 Elasticsearch 更适用于新兴的实时搜索应用。</p>
+<p>　　（6）Solr比较成熟，有一个更大，更成熟的用户、开发和贡献者社区，而 Elasticsearch相对开发维护者较少，更新太快，学习使用成本较高。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="elasticSearch"><a href="#elasticSearch" class="headerlink" title="elasticSearch"></a>elasticSearch</h2><p>要求：JDK1.8、node.js</p>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.elastic.co/cn/">官网</a></p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401161302.png" alt="image-20210401161204395"></p>
+<p>下载解压即可使用</p>
+<blockquote>
+<p>Elasticsearch 7.6.1 目录</p>
+</blockquote>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bin：启动文件</span><br><span class="line">config：配置文件</span><br><span class="line">	log4j2 日志文件</span><br><span class="line">	jvm.options java 虚拟机相关配置</span><br><span class="line">	elasticsearch.yml 配置文件  比如默认9200端口! 跨域问题！ </span><br><span class="line">lib：相关jar包</span><br><span class="line"></span><br><span class="line">modules：功能模块</span><br><span class="line">plugins：插件：比如ik插件</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>启动</p>
+</blockquote>
+<p>点击bin目录下的elasticsearch.bat文件，访问localhost:9200</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401162230.png" alt="image-20210401162227644"></p>
+<h2 id="可视化界面elasticSearch-head"><a href="#可视化界面elasticSearch-head" class="headerlink" title="可视化界面elasticSearch-head"></a>可视化界面elasticSearch-head</h2><p>该可视化界面依赖node.js</p>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/mobz/elasticsearch-head">下载地址</a></p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401162701.png" alt="image-20210401162658084"></p>
+<blockquote>
+<p>安装</p>
+</blockquote>
+<p>解压后，在目录下执行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401162959.png" alt="image-20210401162958033"></p>
+<blockquote>
+<p>启动</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run <span class="built_in">start</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401163142.png" alt="image-20210401163136112"></p>
+<p>访问localhost:9100</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401163228.png" alt="image-20210401163226040"></p>
+<p>你会发现，它报了许多错误，都是与跨域有关，所以我们需要去elasticSearch的elasticsearch.yml文件配置跨域处理</p>
+<blockquote>
+<p>跨域处理</p>
+</blockquote>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401163515.png" alt="image-20210401163513716"></p>
+<p>在elasticSearch的elasticsearch.yml的末尾加上</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">http.cors.enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">http.cors.allow-origin:</span> <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在重启elasticSearch</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401164000.png" alt="image-20210401163959011"></p>
+<blockquote>
+<p>这个head我们就把它当作数据展示工具！我们后面所有的查询通过Kibana</p>
+</blockquote>
+<h2 id="Kibana"><a href="#Kibana" class="headerlink" title="Kibana"></a>Kibana</h2><p>Kibana 是一个针对ElasticSearch的开源分析及可视化平台，用来搜索、查看交互存储在ElasticSearch索引中的数据。使用Kibana,可以通过各种图表进行高级数据分析及展示。Kibana让海量数据更容易理解。它操作简单，基于浏览器的用户界面可以快速创建仪表板（dashboard）实时显示ElasticSearch查询动态，设置Kibana非常简单，无需编码或者格外的基础架构，几分钟内就可以完成Kibana安装并启动ElasticSearch索引检测。</p>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.elastic.co/cn/kibana">官网</a></p>
+<p>Kibana版本要和ElasticSearch一致</p>
+<blockquote>
+<p>安装</p>
+</blockquote>
+<p>解压时间有点久，不要以为出问题关了！！！！！！！！！！！！！！！！！</p>
+<blockquote>
+<p>启动</p>
+</blockquote>
+<p>点击bin目录下的kibana.bat</p>
+<p><img src="../../../../typora/images/image-20210402091114408.png" alt="image-20210402091114408"></p>
+<p>访问localhost:5601<img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402091159.png" alt="image-20210402091150793"></p>
+<p>以后代码都在这里面写</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402091514.png" alt="image-20210402091510562"></p>
+<blockquote>
+<p>汉化</p>
+</blockquote>
+<p>检查kibana-7.6.1-windows-x86_64\x-pack\plugins\translations\translations目录是否有zh-CN这个文件</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402091935.png" alt="image-20210402091932545"></p>
+<p>kibana-7.6.1-windows-x86_64\config\kibaba.yml最后一行加上设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i18n.locale: &quot;zh-CN&quot;</span><br></pre></td></tr></table></figure>
+
+<p>重启kibana</p>
+<p>已经变成中文了</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402092124.png" alt="image-20210402092122028"></p>
+<h1 id="ES核心概念"><a href="#ES核心概念" class="headerlink" title="ES核心概念"></a>ES核心概念</h1><p>1、索引</p>
+<p>2、类型（mapping）</p>
+<p>3、文档</p>
+<p>4.倒排索引</p>
+<blockquote>
+<p>ElasticSearch是面向文档，一切都是json</p>
+</blockquote>
+<blockquote>
+<p>关系型数据库和ElasticSearch的对比</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>关系型数据库</th>
+<th>Elasticsearch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据库database</td>
+<td>索引 indices（数据库）</td>
+</tr>
+<tr>
+<td>表tables</td>
+<td>ypes （以后会被启用）</td>
+</tr>
+<tr>
+<td>行rows</td>
+<td>documents （文档）</td>
+</tr>
+<tr>
+<td>字段columns</td>
+<td>fields</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>物理设计</p>
+</blockquote>
+<p>ElasticSearch在后台把每个索引分成多个分片，每份分片可以在集群中的不同服务器间迁移</p>
+<blockquote>
+<p>逻辑设计</p>
+</blockquote>
+<ol>
+<li><p>文档：索引和搜索数据的最小单位是文档（就是一条条数据）</p>
+<ol>
+<li>自我包含：一篇文档同时包含字段和对应的值，也就是同时包含key：value！</li>
+<li>层次型：可以实层次型，一个文档中包含自文档，复杂的逻辑实体就是这么来的！（就是json对象）</li>
+<li>灵活的结构，文档不依赖预先定义的模式，我们知道关系型数据库中，要提前定义字段才能用，在ElasticSearch中，对于字段是非常灵活的，有时候，我们可以忽略这个字段，或者动态的添加一个字段</li>
+</ol>
+</li>
+<li><p>类型</p>
+<ol>
+<li>类型是文档的逻辑容器,就像关系型数据库一样,表格是行的容器。类型中对于字段的定义称为映射,比如name映射为字符串类型。我们说文档是无模式的 ,它们不需要拥有映射中所定义的所有字段,比如新增一个字段,那么elasticsearch是怎么做的呢?elasticsearch会自动的将新字段加入映射,但是这个字段的不确定它是什么类型, elasticsearch就开始猜,如果这个值是18 ,那么elasticsearch会认为它是整形。但是elasticsearch也可能猜不对 ，所以最安全的方式就是提前定义好所需要的映射,这点跟关系型数据库殊途同归了,先定义好字段,然后再使用,别整什么幺蛾子。</li>
+</ol>
+</li>
+<li><p>索引</p>
+<ol>
+<li><p>就是数据库!</p>
+<p>索引是映射类型的容器, elasticsearch中的索引是一个非常大的文档集合。索|存储了映射类型的字段和其他设置。然后它们被存储到了各个分片上了。我们来研究下分片是如何工作的。</p>
+</li>
+<li><p>物理设计：节点和分片如何工作</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402095216.png" alt="image-20210402095215406"></p>
+<p>一个集群至少有一 个节点,而一个节点就是一个elasricsearch进程 ,节点可以有多个索引默认的,如果你创建索引,那么索引将会有个5个分片( primary shard ,又称主分片)构成的,每一个主分片会有-一个副本( replica shard ,又称复制分片）</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402095246.png" alt="image-20210402095245423"></p>
+<p>主分片和对应的复制分片都不会在同一个节点内,这样有利于某个节点挂掉了,数据也不至于丢失。实际上, 一个分片是一个Lucene索引, 一个包含<strong>倒排索引</strong>的文件目录,倒排索引的结构使得elasticsearch在不扫描全部文档的情况下,就能告诉你哪些文档包含特定的关键字。</p>
+</li>
+</ol>
+</li>
+<li><p>倒排索引</p>
+</li>
+</ol>
+<p>elasticsearch使用的是一种称为倒排索引的结构,采用Lucene倒排索作为底层。这种结构适用于快速的全文搜索，一个索引由文档中所有不重复的列表构成,对于每一个词,都有一个包含它的文档列表。 例如,现在有两个文档，每个文档包含如下内容:</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Study every day， good good up to forever  # 文档1包含的内容</span><br><span class="line">To forever, study every day，good good up  # 文档2包含的内容</span><br></pre></td></tr></table></figure>
+
+<p>为创建倒排索引,我们首先要将每个文档拆分成独立的词(或称为词条或者tokens) ,然后创建一一个包含所有不重 复的词条的排序列表,然后列出每个词条出现在哪个文档:</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_1</th>
+<th>doc_2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Study</td>
+<td>√</td>
+<td>x</td>
+</tr>
+<tr>
+<td>To</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>forever</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>day</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>study</td>
+<td>x</td>
+<td>√</td>
+</tr>
+<tr>
+<td>good</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>every</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>to</td>
+<td>√</td>
+<td>x</td>
+</tr>
+<tr>
+<td>up</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<p>现在，我们试图搜索 to  forever,只需要查看包含每个词条的文档</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_1</th>
+<th>doc_2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>to</td>
+<td>√</td>
+<td>x</td>
+</tr>
+<tr>
+<td>forever</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<p>两个文档都匹配,但是第一个文档比第二个匹配程度更高。如果没有别的条件,现在,这两个包含关键字的文档都将返回。</p>
+<p>再来看一个示例,比如我们通过博客标签来搜索博客文章。那么倒排索引列表就是这样的一个结构:</p>
+<table>
+<thead>
+<tr>
+<th>博客文章(原始数据)</th>
+<th>博客文章(原始数据)</th>
+<th>索引列表(倒排索引)</th>
+<th>索引列表(倒排索引)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>博客文章ID</td>
+<td>标签</td>
+<td>标签</td>
+<td>博客文章ID</td>
+</tr>
+<tr>
+<td>1</td>
+<td>python</td>
+<td>python</td>
+<td>1，2，3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>python</td>
+<td>linux</td>
+<td>3，4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>python，</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>linux</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>如果要搜索含有python标签的文章,那相对于查找所有原始数据而言，查找倒排索引后的数据将会快的多。只需要查看标签这一栏,然后获取相关的文章ID即可。完全过滤掉无关的所有数据,提高效率!</p>
+<p>elasticsearch的索引和Lucene的索引对比</p>
+<p>在elasticsearch中，索引(库)这个词被频繁使用,这就是术语的使用。在elasticsearch中 ,索引被分为多个分片,每份分片是-个Lucene的索引。所以一个elasticsearch索引是由多 个Lucene索引组成的。别问为什么,谁让elasticsearch使用Lucene作为底层呢!如无特指，说起索引都是指elasticsearch的索引。</p>
+<p>接下来的一切操作都在kibana中Dev Tools下的Console里完成。基础操作!</p>
+<h1 id="ik分词器"><a href="#ik分词器" class="headerlink" title="ik分词器"></a>ik分词器</h1><blockquote>
+<p>什么是ik分词器？</p>
+</blockquote>
+<p>分词:即把一-段中文或者别的划分成一个个的关键字,我们在搜索时候会把自己的信息进行分词,会把数据库中或者索引库中的数据进行分词,然后进行一个匹配操作,默认的中文分词是将每个字看成一个词,比如“我爱狂神”会被分为”我”,“爱”,“狂”,“神” ,这显然是不符合要求的,所以我们需要安装中文分词器ik来解决这个问题。</p>
+<p>如果要使用中文,建议使用ik分词器!</p>
+<p>IK提供了两个分词算法: ik_ smart和ik_ max_ word ,其中ik_ smart为最少切分, ik_ max_ _word为最细粒度划分!一会我们测试!</p>
+<p>什么是IK分词器：</p>
+<ul>
+<li>把一句话分词</li>
+<li>如果使用中文：推荐IK分词器</li>
+<li>两个分词算法：ik_smart（最少切分），ik_max_word（最细粒度划分）</li>
+</ul>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/medcl/elasticsearch-analysis-ik">下载地址</a></p>
+<p>注意版本</p>
+<blockquote>
+<p>安装</p>
+</blockquote>
+<p>在elasticsearch下的plugins文件夹下新建ik空文件夹，将ik的压缩包解压到该文件夹下，删除压缩包</p>
+<blockquote>
+<p>重启elasticSearch</p>
+</blockquote>
+<p>在es的bin目录下执行</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elastic<span class="built_in">search-plugin</span> list</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402103056.png" alt="image-20210402103054868"></p>
+<blockquote>
+<p>使用</p>
+</blockquote>
+<p>1、使用ik_smart(最少切分)算法，在kibana的控制台中编写代码</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET _analyze</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;analyzer&quot;</span>: <span class="string">&quot;ik_smart&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>:<span class="string">&quot;中华人民共和国&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;tokens&quot;</span> : [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;中华人民共和国&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">7</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402103823.png" alt="image-20210402103820058"></p>
+<p>2、使用ik_max_word（最细粒度）算法</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET _analyze</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;analyzer&quot;</span>: <span class="string">&quot;ik_max_word&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;text&quot;</span>:<span class="string">&quot;中华人民共和国&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;tokens&quot;</span> : [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;中华人民共和国&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">7</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;中华人民&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">4</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;中华&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">2</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">2</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;华人&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">1</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">3</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">3</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;人民共和国&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">2</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">7</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">4</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;人民&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">2</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">4</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">5</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;共和国&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">4</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">7</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">6</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;共和&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">4</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">6</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_WORD&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">7</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;token&quot;</span> : <span class="string">&quot;国&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;start_offset&quot;</span> : <span class="number">6</span>,</span><br><span class="line">      <span class="attr">&quot;end_offset&quot;</span> : <span class="number">7</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span> : <span class="string">&quot;CN_CHAR&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;position&quot;</span> : <span class="number">8</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402104000.png" alt="image-20210402103959165"></p>
+<blockquote>
+<p>问题</p>
+</blockquote>
+<p>我想对<strong>超级无敌力霸王</strong>进行分词，想要将<strong>力霸王</strong>放在一起，但是发现被分开了，原因是ik自带的字典中没有<strong>力霸王</strong>这个词</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402104738.png" alt="image-20210402104736484"></p>
+<p>所以需要的词，要加到我们的分词器的字典中！</p>
+<p>1、编写自己的字典 hl.dic</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402105126.png" alt="image-20210402105124737"></p>
+<p>里面只有<strong>力霸王</strong></p>
+<p>2、在E:\JavaUtil\elasticSearch\elasticsearch-7.6.1\plugins\ik\config目录下IKAnalyzer.cfg.xml文件</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402105236.png" alt="image-20210402105234540"></p>
+<p>3、重启es</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402105433.png" alt="image-20210402105432051"></p>
+<p>你会发现已经有<strong>力霸王</strong>了</p>
+<p>以后如果要配置我们自己的分词，就在自己定义的dic文件中配置就行了</p>
+<h1 id="Rest风格"><a href="#Rest风格" class="headerlink" title="Rest风格"></a>Rest风格</h1><p>一种软件架构风格，而不是标准，只是提供了一组设计原则和约束条件。它主要用于客户端和服务器交互类的软件。基于这个风格设计的软件可以更加简洁，更易于实现缓存等机制。</p>
+<p>基本Rest命令说明</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>url地址</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PUT</td>
+<td>localhost:9100/索引名称/类型名称/文档id</td>
+<td>创建文档（指定id）</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>localhost:9100/索引名称/类型名称</td>
+<td>创建文档（随机id）</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>localhost:9100/索引名称/文档类型/文档id/_update</td>
+<td>修改文档</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>localhost:9100/索引名称/文档类型/文档id</td>
+<td>删除文档</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>localhost:9100/索引名称/文档类型/文档id</td>
+<td>查询文档通过文档id</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>localhost:9100/索引名称/文档类型/_search</td>
+<td>查询所有文档</td>
+</tr>
+</tbody></table>
+<h1 id="关于索引的基本操作"><a href="#关于索引的基本操作" class="headerlink" title="关于索引的基本操作"></a>关于索引的基本操作</h1><h2 id="创建一个索引"><a href="#创建一个索引" class="headerlink" title="创建一个索引"></a>创建一个索引</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;索引名&#x2F;类型(以后没有了)&#x2F;文档id</span><br><span class="line">&#123;</span><br><span class="line">	请求体</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">PUT &#x2F;hl&#x2F;type1&#x2F;1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;:&quot;hl&quot;,</span><br><span class="line">  &quot;age&quot;:18</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402110539.png" alt="image-20210402110538178"></p>
+<p>结果</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402110746.png" alt="image-20210402110744510"></p>
+<p>hl索引里面已经有1文档，且已经有数据了</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402110913.png" alt="image-20210402110912145"></p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ul>
+<li>字符串类型</li>
+</ul>
+<p>text、keyword</p>
+<ul>
+<li>数值类型</li>
+</ul>
+<p>long、integer、short、byte、double、float、half float、scaled float</p>
+<ul>
+<li>日期类型</li>
+</ul>
+<p>date</p>
+<ul>
+<li>布尔值类型</li>
+</ul>
+<p>boolean</p>
+<ul>
+<li>二进制类型</li>
+</ul>
+<p>binary</p>
+<p>等等……</p>
+<h2 id="指定字段的类型"><a href="#指定字段的类型" class="headerlink" title="指定字段的类型"></a>指定字段的类型</h2><p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402111746.png" alt="image-20210402111743468"></p>
+<h2 id="获取索引的信息，通过get信息"><a href="#获取索引的信息，通过get信息" class="headerlink" title="获取索引的信息，通过get信息"></a>获取索引的信息，通过get信息</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET test1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402111928.png" alt="image-20210402111927344"></p>
+<h2 id="取消类型设置采用默认"><a href="#取消类型设置采用默认" class="headerlink" title="取消类型设置采用默认"></a>取消类型设置采用默认</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /test2/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;hl&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;brithday&quot;</span>:<span class="string">&quot;1998-09-05&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;age&quot;</span>:<span class="number">13</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402112234.png" alt="image-20210402112233410"></p>
+<h2 id="查看数据类型"><a href="#查看数据类型" class="headerlink" title="查看数据类型"></a>查看数据类型</h2><p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402112414.png" alt="image-20210402112412821"></p>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>通过命令查看ElasticSearch索引情况,通过get _cat命令可以获取es当前许多信息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET _cat/health </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402112930.png" alt="image-20210402112929550"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看版本信息</span></span><br><span class="line">GET _cat/indices?v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402112916.png" alt="image-20210402112914577"></p>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><ul>
+<li>采用put</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402134023.png" alt="image-20210402134020609"></p>
+<p>但是如果数据漏掉了，索引里面只会有传过去的数据</p>
+<ul>
+<li><p>采用post</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /test2/_doc/1/_update</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;doc&quot;</span>:&#123;</span><br><span class="line">     <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;hl113&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402134355.png" alt="image-20210402134354341"></p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除索引</span></span><br><span class="line">DELETE test1</span><br><span class="line"><span class="comment">//删除文档</span></span><br><span class="line">DELETE /test2/_doc/1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402134453.png" alt="image-20210402134451811"></p>
+<h1 id="关于文档的基本操作"><a href="#关于文档的基本操作" class="headerlink" title="关于文档的基本操作"></a>关于文档的基本操作</h1><h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">向hl索引下user文档添加id为1的数据</span><br><span class="line">PUT /hl/user/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;hl&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;age&quot;</span>:<span class="number">18</span>,</span><br><span class="line">  <span class="attr">&quot;desc&quot;</span>:<span class="string">&quot;一个码农&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tags&quot;</span>:[<span class="string">&quot;技术&quot;</span>,<span class="string">&quot;it&quot;</span>,<span class="string">&quot;直男&quot;</span>] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402135616.png" alt="image-20210402135614936"></p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><ul>
+<li><p>put 覆盖</p>
+</li>
+<li><p>post 更新</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;hl&#x2F;user&#x2F;3&#x2F;_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;doc&quot;:&#123;</span><br><span class="line">    &quot;age&quot;:99</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><h3 id="简单搜索"><a href="#简单搜索" class="headerlink" title="简单搜索"></a>简单搜索</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /h1/user/1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402140357.png" alt="image-20210402140356291"></p>
+<h3 id="条件搜索"><a href="#条件搜索" class="headerlink" title="条件搜索"></a>条件搜索</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...../_search?q=条件</span></span><br><span class="line">GET hl/user/_search?q=name:hl</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402140718.png" alt="image-20210402140715030"></p>
+<h3 id="复杂查询（排序、分页、高亮、模糊）"><a href="#复杂查询（排序、分页、高亮、模糊）" class="headerlink" title="复杂查询（排序、分页、高亮、模糊）"></a>复杂查询（排序、分页、高亮、模糊）</h3><h4 id="match"><a href="#match" class="headerlink" title="match"></a>match</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只要name属性中带有 张三 的数据，都能查询出来，但是 单个英文字符未生效</span></span><br><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第一个hist中value表示查询出的记录数，relation表示查询规则，hits则是查询出的数据集合</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402142145.png" alt="image-20210402142143654"></p>
+<p>在查询出的3个数据中，存在一个score属性，即为权重，权重越高，搜索出来的位置越靠前，在本次搜索中，我们搜索了<strong>张三</strong>，所以张三的权重为最高</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402142323.png" alt="image-20210402142319169"></p>
+<h4 id="source"><a href="#source" class="headerlink" title="_source"></a>_source</h4><p>指定查询字段</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;_source&quot;</span>: [<span class="string">&quot;name&quot;</span>,<span class="string">&quot;desc&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402143005.png" alt="image-20210402143003620"></p>
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h4><p>排序</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;_source&quot;</span>: [<span class="string">&quot;name&quot;</span>,<span class="string">&quot;age&quot;</span>],</span><br><span class="line">  <span class="attr">&quot;sort&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">//排序字段</span></span><br><span class="line">      <span class="attr">&quot;age&quot;</span>: &#123;</span><br><span class="line">        <span class="comment">//desc 降序 asc 升序</span></span><br><span class="line">        <span class="attr">&quot;order&quot;</span>: <span class="string">&quot;desc&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402143303.png" alt="image-20210402143302188"></p>
+<h4 id="from-和-size"><a href="#from-和-size" class="headerlink" title="from 和 size"></a>from 和 size</h4><p>分页 from：从哪开始，size：每页大小</p>
+<p>类似 limit 0,2</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;_source&quot;</span>: [<span class="string">&quot;name&quot;</span>,<span class="string">&quot;age&quot;</span>],</span><br><span class="line">  <span class="attr">&quot;sort&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;age&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;order&quot;</span>: <span class="string">&quot;asc&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="comment">//分页</span></span><br><span class="line">  <span class="attr">&quot;from&quot;</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">&quot;size&quot;</span>:<span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402143604.png" alt="image-20210402143603228"></p>
+<h4 id="布尔值查询"><a href="#布尔值查询" class="headerlink" title="布尔值查询"></a>布尔值查询</h4><blockquote>
+<p>must</p>
+</blockquote>
+<p>must（add）,所有条件都要符合</p>
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402144214.png" alt="image-20210402144212358"></p>
+<blockquote>
+<p>should(or)</p>
+</blockquote>
+<p>只需要满足一个条件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;bool&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;should&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">           <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;age&quot;</span>: <span class="string">&quot;13&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402144347.png" alt="image-20210402144346078"></p>
+<blockquote>
+<p>must_not(not)</p>
+</blockquote>
+<p>不满足条件的才能被查询出来</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;bool&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;must_not&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402144546.png" alt="image-20210402144545452"></p>
+<blockquote>
+<p>过滤器</p>
+</blockquote>
+<p>进行数据过滤</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;bool&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;must&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;filter&quot;</span>: &#123;</span><br><span class="line">        <span class="comment">//范围  </span></span><br><span class="line">        <span class="attr">&quot;range&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;age&quot;</span>: &#123;</span><br><span class="line">            <span class="comment">//gt &gt; gte &gt;= lt &lt; lte &lt;=</span></span><br><span class="line">              <span class="attr">&quot;gt&quot;</span>: <span class="number">14</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402145007.png" alt="image-20210402145006104"></p>
+<h4 id="多条件查询"><a href="#多条件查询" class="headerlink" title="多条件查询"></a>多条件查询</h4><p>只要满足一个条件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET hl&#x2F;user&#x2F;_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;tags&quot;: &quot;男 it&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, </span><br><span class="line">  &quot;_source&quot;: [&quot;name&quot;,&quot;tags&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402145614.png" alt="image-20210402145612817"></p>
+<p>匹配条件为“男 it“ ，hl两个条件都符合，所以他的score(权重)比李四高</p>
+<h4 id="精确查询"><a href="#精确查询" class="headerlink" title="精确查询"></a>精确查询</h4><p>term是直接通过倒排索引进行精确查询</p>
+<h4 id="关于分词"><a href="#关于分词" class="headerlink" title="关于分词"></a>关于分词</h4><p>term:直接查询精确</p>
+<p>match:会使用分词器解析（先分析文档，然后通过分析的文档进行查询）</p>
+<blockquote>
+<p>如果类型为keyword，不会被分词器拆分</p>
+</blockquote>
+<h4 id="多个值精确查询"><a href="#多个值精确查询" class="headerlink" title="多个值精确查询"></a>多个值精确查询</h4><p>bool+term</p>
+<h4 id="高亮查询"><a href="#高亮查询" class="headerlink" title="高亮查询"></a>高亮查询</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="attr">&quot;_source&quot;</span>: [<span class="string">&quot;name&quot;</span>,<span class="string">&quot;tags&quot;</span>],</span><br><span class="line">  <span class="attr">&quot;highlight&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;fields&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>:&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402152443.png" alt="image-20210402152442314"></p>
+<blockquote>
+<p>自定义高亮显示</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">GET hl/user/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;query&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;match&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;张三&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="attr">&quot;_source&quot;</span>: [<span class="string">&quot;name&quot;</span>,<span class="string">&quot;tags&quot;</span>],</span><br><span class="line">  <span class="attr">&quot;highlight&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;pre_tags&quot;</span>: <span class="string">&quot;&lt;p style=&#x27;color:red&#x27;&gt;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;post_tags&quot;</span>: <span class="string">&quot;&lt;/p&gt;&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;fields&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>:&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210402152812.png" alt="image-20210402152811428"></p>
+<h1 id="集成Springboot"><a href="#集成Springboot" class="headerlink" title="集成Springboot"></a>集成Springboot</h1><h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><p>1、创建项目</p>
+<p>2、导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-elasticsearch<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意检查版本是否对应</p>
+<p>3、配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ElasticSearchConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestHighLevelClient <span class="title">restHighLevelClient</span><span class="params">()</span></span>&#123;</span><br><span class="line">        RestHighLevelClient client = <span class="keyword">new</span> RestHighLevelClient(</span><br><span class="line">                RestClient.builder(</span><br><span class="line">                        <span class="keyword">new</span> HttpHost(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">9200</span>,<span class="string">&quot;http&quot;</span>)</span><br><span class="line">                )</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> client;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">   <span class="keyword">private</span> RestHighLevelClient restHighLevelClient;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 索引的创建</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testCreateIndexRequest</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       <span class="comment">//1.创建索引请求</span></span><br><span class="line">       CreateIndexRequest request = <span class="keyword">new</span> CreateIndexRequest(<span class="string">&quot;test3&quot;</span>);</span><br><span class="line">       <span class="comment">//2.执行索引请求,请求后获得相应</span></span><br><span class="line">       CreateIndexResponse response = restHighLevelClient.indices().create(request, RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(response);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取索引,判断是否存在</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testGetIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       GetIndexRequest request = <span class="keyword">new</span> GetIndexRequest(<span class="string">&quot;test3&quot;</span>);</span><br><span class="line">       <span class="keyword">boolean</span> exists = restHighLevelClient.indices().exists(request,RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(exists);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 删除索引</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testDeleteIndex</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       DeleteIndexRequest request = <span class="keyword">new</span> DeleteIndexRequest(<span class="string">&quot;test3&quot;</span>);</span><br><span class="line">       AcknowledgedResponse delete = restHighLevelClient.indices().delete(request,RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(delete);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 添加文档</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testAddDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       <span class="comment">//创建对象</span></span><br><span class="line">       User user = <span class="keyword">new</span> User(<span class="string">&quot;hl&quot;</span>,<span class="number">18</span>);</span><br><span class="line">       <span class="comment">//创建请求</span></span><br><span class="line">       IndexRequest request = <span class="keyword">new</span> IndexRequest(<span class="string">&quot;test3&quot;</span>);</span><br><span class="line">       <span class="comment">//设置规则</span></span><br><span class="line">       request.id(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       request.timeout(TimeValue.timeValueSeconds(<span class="number">1</span>));</span><br><span class="line">       request.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//将数据放入请求,由于要求json数据，所以需要将数据转成json格式</span></span><br><span class="line">       request.source(JSON.toJSONString(user), XContentType.JSON);</span><br><span class="line">       <span class="comment">//发送请求,获取响应</span></span><br><span class="line">       IndexResponse response = restHighLevelClient.index(request,RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(response.toString());</span><br><span class="line">       System.out.println(response.status());</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取文档,判断是否存在</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testGetDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       GetRequest request = <span class="keyword">new</span> GetRequest(<span class="string">&quot;test3&quot;</span>,<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       <span class="keyword">boolean</span> exists = restHighLevelClient.exists(request,RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(exists);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 获取文档,判断是否存在</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testGetDocumentInfo</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       GetRequest request = <span class="keyword">new</span> GetRequest(<span class="string">&quot;test3&quot;</span>,<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       GetResponse response = restHighLevelClient.get(request,RequestOptions.DEFAULT);</span><br><span class="line">       <span class="comment">//打印文档的信息</span></span><br><span class="line">       System.out.println(response.getSourceAsString());</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 更新文档</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> IOException</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testUpdateDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       UpdateRequest request = <span class="keyword">new</span> UpdateRequest(<span class="string">&quot;test3&quot;</span>,<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       request.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line">       <span class="comment">//更新文档</span></span><br><span class="line">       request.doc(JSON.toJSONString(<span class="keyword">new</span> User(<span class="string">&quot;hl1&quot;</span>,<span class="number">18</span>)),XContentType.JSON);</span><br><span class="line">       <span class="comment">//发送请求</span></span><br><span class="line">       UpdateResponse response = restHighLevelClient.update(request,RequestOptions.DEFAULT);</span><br><span class="line">       <span class="comment">//打印文档的信息</span></span><br><span class="line">       System.out.println(response);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 删除文档</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testDeleteDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       DeleteRequest request = <span class="keyword">new</span> DeleteRequest(<span class="string">&quot;test3&quot;</span>,<span class="string">&quot;1&quot;</span>);</span><br><span class="line">       request.timeout(<span class="string">&quot;1s&quot;</span>);</span><br><span class="line">       <span class="comment">//发送请求</span></span><br><span class="line">       DeleteResponse response = restHighLevelClient.delete(request,RequestOptions.DEFAULT);</span><br><span class="line">       <span class="comment">//打印文档的信息</span></span><br><span class="line">       System.out.println(response);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 批量插入</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testBulkRequest</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">       <span class="comment">//创建请求</span></span><br><span class="line">       BulkRequest request = <span class="keyword">new</span> BulkRequest();</span><br><span class="line">       <span class="comment">//设置规则</span></span><br><span class="line">       request.timeout(<span class="string">&quot;10s&quot;</span>);</span><br><span class="line">       <span class="comment">//创建对象</span></span><br><span class="line">       ArrayList&lt;User&gt; users = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       users.add(<span class="keyword">new</span> User(<span class="string">&quot;hl&quot;</span>,<span class="number">18</span>));</span><br><span class="line">       users.add(<span class="keyword">new</span> User(<span class="string">&quot;hl1&quot;</span>,<span class="number">18</span>));</span><br><span class="line">       users.add(<span class="keyword">new</span> User(<span class="string">&quot;hl2&quot;</span>,<span class="number">18</span>));</span><br><span class="line">       users.add(<span class="keyword">new</span> User(<span class="string">&quot;hl3&quot;</span>,<span class="number">18</span>));</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;users.size();i++) &#123;</span><br><span class="line">           request.add(</span><br><span class="line">                   <span class="keyword">new</span> IndexRequest(<span class="string">&quot;test3&quot;</span>)</span><br><span class="line">                   .id(<span class="string">&quot;&quot;</span>+i)</span><br><span class="line">                   .source(JSON.toJSONString(users.get(i)),XContentType.JSON)</span><br><span class="line">           );</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//发送请求,获取响应</span></span><br><span class="line">       BulkResponse response = restHighLevelClient.bulk(request,RequestOptions.DEFAULT);</span><br><span class="line">       System.out.println(response.toString());</span><br><span class="line">       System.out.println(response.status());</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 查询</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">testSearchDocument</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       SearchRequest request = <span class="keyword">new</span> SearchRequest(<span class="string">&quot;test3&quot;</span>);</span><br><span class="line">       <span class="comment">//构建搜索条件</span></span><br><span class="line">       SearchSourceBuilder sourceBuilder = <span class="keyword">new</span> SearchSourceBuilder();</span><br><span class="line">       <span class="comment">//设置了高亮</span></span><br><span class="line">       sourceBuilder.highlighter();</span><br><span class="line">       <span class="comment">//term name为cyx1的</span></span><br><span class="line">       TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;hl&quot;</span>);</span><br><span class="line">       sourceBuilder.query(termQueryBuilder);</span><br><span class="line">       sourceBuilder.timeout(<span class="keyword">new</span> TimeValue(<span class="number">60</span>, TimeUnit.SECONDS));</span><br><span class="line"></span><br><span class="line">       request.source(sourceBuilder);</span><br><span class="line">       SearchResponse response = restHighLevelClient.search(request, RequestOptions.DEFAULT);</span><br><span class="line"></span><br><span class="line">       System.out.println(<span class="string">&quot;测试查询文档-----&quot;</span>+JSON.toJSONString(response.getHits()));</span><br><span class="line">       System.out.println(<span class="string">&quot;=====================&quot;</span>);</span><br><span class="line">       <span class="keyword">for</span> (SearchHit documentFields : response.getHits().getHits()) &#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;测试查询文档--遍历参数--&quot;</span>+documentFields.getSourceAsMap());</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:1909312602@qq.com">HeavenImmortal</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://heavenimtoral.gitee.io/2021/04/01/ElasticSearch/">https://heavenimtoral.gitee.io/2021/04/01/ElasticSearch/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a><a class="post-meta__tags" href="/tags/ElasticSearch/">ElasticSearch</a></div><div class="post_share"><div class="social-share" data-image="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/06/java%E7%9A%8423%E7%A7%8D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><img class="prev-cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115539.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Java设计模式(不定时更新)</div></div></a></div><div class="next-post pull-right"><a href="/2021/04/01/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Navicat%E5%B0%86Mysql%E7%9A%84%E8%A1%A8%E7%BB%93%E6%9E%84%E5%AF%BC%E5%87%BA%E6%88%90%E8%A1%A8%E6%A0%BC%EF%BC%9F/"><img class="next-cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115545.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">如何利用Navicat将Mysql的表结构导出成表格？</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2021/03/04/IDEA代码生成插件MyBatisCodeHelper-Pro/" title="IDEA代码生成插件MyBatisCodeHelper-Pro"><img class="cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210315195538.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-04</div><div class="title">IDEA代码生成插件MyBatisCodeHelper-Pro</div></div></a></div><div><a href="/2021/05/13/Java8-Lanbda/" title="Java8 Lambda"><img class="cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115536.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-13</div><div class="title">Java8 Lambda</div></div></a></div><div><a href="/2021/05/25/LinkedHashMap/" title="LinkedHashMap"><img class="cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115540.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-25</div><div class="title">LinkedHashMap</div></div></a></div><div><a href="/2022/03/25/Mybatis-批量处理/" title="MyBatis-批量处理"><img class="cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115535.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="title">MyBatis-批量处理</div></div></a></div><div><a href="/2021/02/26/java+阿里云oss/" title="JAVA实现文件上传(aliyunOss)"><img class="cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/b4963ac97f8b17d757061794496d0c3d0504ae1c.jpg@1320w_742h.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-26</div><div class="title">JAVA实现文件上传(aliyunOss)</div></div></a></div><div><a href="/2020/12/09/java复习/" title="java复习"><img class="cover" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/java.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-09</div><div class="title">java复习</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">HeavenImmortal</div><div class="author-info__description">我苦苦的寻找，完美的代码究竟在哪里？</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">44</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">搜索技术简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch%E4%B8%8ESolr%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">ElasticSearch与Solr区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#elasticSearch"><span class="toc-number">2.1.</span> <span class="toc-text">elasticSearch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E7%95%8C%E9%9D%A2elasticSearch-head"><span class="toc-number">2.2.</span> <span class="toc-text">可视化界面elasticSearch-head</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kibana"><span class="toc-number">2.3.</span> <span class="toc-text">Kibana</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ES%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">ES核心概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ik%E5%88%86%E8%AF%8D%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">ik分词器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rest%E9%A3%8E%E6%A0%BC"><span class="toc-number">5.</span> <span class="toc-text">Rest风格</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%B4%A2%E5%BC%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">关于索引的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95"><span class="toc-number">6.1.</span> <span class="toc-text">创建一个索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.2.</span> <span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E5%AD%97%E6%AE%B5%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.3.</span> <span class="toc-text">指定字段的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%8C%E9%80%9A%E8%BF%87get%E4%BF%A1%E6%81%AF"><span class="toc-number">6.4.</span> <span class="toc-text">获取索引的信息，通过get信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E6%B6%88%E7%B1%BB%E5%9E%8B%E8%AE%BE%E7%BD%AE%E9%87%87%E7%94%A8%E9%BB%98%E8%AE%A4"><span class="toc-number">6.5.</span> <span class="toc-text">取消类型设置采用默认</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.6.</span> <span class="toc-text">查看数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-number">6.7.</span> <span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9"><span class="toc-number">6.8.</span> <span class="toc-text">修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">6.9.</span> <span class="toc-text">删除</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">7.</span> <span class="toc-text">关于文档的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0"><span class="toc-number">7.1.</span> <span class="toc-text">添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0"><span class="toc-number">7.2.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2"><span class="toc-number">7.3.</span> <span class="toc-text">搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%90%9C%E7%B4%A2"><span class="toc-number">7.3.1.</span> <span class="toc-text">简单搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%90%9C%E7%B4%A2"><span class="toc-number">7.3.2.</span> <span class="toc-text">条件搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2%EF%BC%88%E6%8E%92%E5%BA%8F%E3%80%81%E5%88%86%E9%A1%B5%E3%80%81%E9%AB%98%E4%BA%AE%E3%80%81%E6%A8%A1%E7%B3%8A%EF%BC%89"><span class="toc-number">7.3.3.</span> <span class="toc-text">复杂查询（排序、分页、高亮、模糊）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#match"><span class="toc-number">7.3.3.1.</span> <span class="toc-text">match</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#source"><span class="toc-number">7.3.3.2.</span> <span class="toc-text">_source</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sort"><span class="toc-number">7.3.3.3.</span> <span class="toc-text">sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#from-%E5%92%8C-size"><span class="toc-number">7.3.3.4.</span> <span class="toc-text">from 和 size</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.3.3.5.</span> <span class="toc-text">布尔值查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.3.3.6.</span> <span class="toc-text">多条件查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.3.3.7.</span> <span class="toc-text">精确查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%88%86%E8%AF%8D"><span class="toc-number">7.3.3.8.</span> <span class="toc-text">关于分词</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E4%B8%AA%E5%80%BC%E7%B2%BE%E7%A1%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.3.3.9.</span> <span class="toc-text">多个值精确查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E4%BA%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.3.3.10.</span> <span class="toc-text">高亮查询</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E6%88%90Springboot"><span class="toc-number">8.</span> <span class="toc-text">集成Springboot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="toc-number">8.1.</span> <span class="toc-text">配置环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">8.2.</span> <span class="toc-text">测试</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115543.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PgSql获取json格式字符串中某个属性的值"/></a><div class="content"><a class="title" href="/2022/07/27/PgSql%E8%8E%B7%E5%8F%96json%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/" title="PgSql获取json格式字符串中某个属性的值">PgSql获取json格式字符串中某个属性的值</a><time datetime="2022-07-27T02:28:39.864Z" title="Created 2022-07-27 10:28:39">2022-07-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210401115535.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis-批量处理"/></a><div class="content"><a class="title" href="/2022/03/25/Mybatis-%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86/" title="MyBatis-批量处理">MyBatis-批量处理</a><time datetime="2022-03-25T03:17:21.963Z" title="Created 2022-03-25 11:17:21">2022-03-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/22/jvm/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2021/10/22/jvm/" title="No title">No title</a><time datetime="2021-10-22T09:42:25.080Z" title="Created 2021-10-22 17:42:25">2021-10-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/30/typeScript/" title="TypeScript"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20211019161458.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TypeScript"/></a><div class="content"><a class="title" href="/2021/09/30/typeScript/" title="TypeScript">TypeScript</a><time datetime="2021-09-30T06:28:35.678Z" title="Created 2021-09-30 14:28:35">2021-09-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/22/OpenLayers/" title="OpenLayers"><img src="https://heavenimmortal.oss-cn-chengdu.aliyuncs.com/img/20210922152509.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenLayers"/></a><div class="content"><a class="title" href="/2021/09/22/OpenLayers/" title="OpenLayers">OpenLayers</a><time datetime="2021-09-22T06:27:41.751Z" title="Created 2021-09-22 14:27:41">2021-09-22</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By HeavenImmortal</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">广修亿劫，证吾神通!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>Powered by</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/css/mine.js"></script></div></body></html>
